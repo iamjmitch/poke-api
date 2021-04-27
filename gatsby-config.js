@@ -20,8 +20,8 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `limelight`,
-          `source sans pro\:300,400,400i,700`, // you can also specify font weights and styles
+          `Fugaz One\:300,400,500,600,700`, // you can also specify font weights and styles
+          `Poppins\:300,400,500,600,700,800,900`, // you can also specify font weights and styles
         ],
         display: "swap",
       },

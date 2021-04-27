@@ -2,29 +2,33 @@ import axios from "axios"
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
+//--components--
+import NumberIcon from "./numberIcon"
+//--styled-components
+
 const StyledSinglePokemon = styled.div`
-  background: white;
-  width: 100%
-  border: 1px solid black;
+  background: #ece8e826;
+  border: 1px solid #00000033;
+  border-radius: 10px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 10px;
+  height: 260px;
 `
 
 const StyledInnerDiv = styled.div`
-  background: ${props => props.bg};
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 30px 0;
-  img {
+  .sprite {
     height: 150px;
   }
   p {
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 500;
   }
 `
 
@@ -37,9 +41,10 @@ const StyledLoading = styled.div`
   align-items: center;
 `
 
-const SinglePokemon = ({ name, url }) => {
+const SinglePokemon = ({ name, url, number }) => {
   const [pokemon, updatePokemon] = useState([])
   const [isLoading, updateIsLoading] = useState(true)
+  const [imageLoaded, updateimageLoaded] = useState(false)
 
   useEffect(() => {
     axios.get(`${url}`).then(response => {
@@ -53,49 +58,21 @@ const SinglePokemon = ({ name, url }) => {
     })
   }
 
-  const colorPicker = type => {
-    switch (type) {
-      case "fire":
-        return "red"
-      case "water":
-        return "blue"
-      case "grass":
-        return "green"
-      case "normal":
-        return "brown"
-      case "bug":
-        return "lightgreen"
-      case "electric":
-        return "yellow"
-      case "posion":
-        return "darkgreen"
-      case "ground":
-        return "lightbrown"
-      case "fairy":
-        return "pink"
-      case "fighting":
-        return "orange"
-      case "rock":
-        return "grey"
-      case "ghost":
-        return "purple"
-      default:
-        return "white"
-    }
-  }
-
   return (
     <StyledSinglePokemon>
       {console.log(pokemon)}
       {isLoading === false ? (
-        <StyledInnerDiv bg={colorPicker(pokemon.types[0].type.name)}>
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+        <StyledInnerDiv>
+          <NumberIcon number={number} types={pokemon.types} />
+          <img
+            className="sprite"
+            src={pokemon.sprites.front_default}
+            alt={pokemon.name}
+          />
           <p>{`${pokemon.name.toProperCase()}`}</p>
-          <p>{`Type. ${pokemon.types[0].type.name.toProperCase()}`}</p>
         </StyledInnerDiv>
       ) : (
         <StyledLoading>
-          <img src="./images/pokeball.png" width="50px" />
           <p>Loading...</p>
         </StyledLoading>
       )}
