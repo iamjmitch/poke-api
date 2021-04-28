@@ -15,8 +15,8 @@ const StyledNumberIcon = styled.div`
 
 const StyledNumber = styled.div`
   width: auto;
-  font-size: 1.7em;
-  font-weight: 700;
+  font-size: 1.4em;
+  font-weight: 500;
   font-family: "Fugaz One";
   padding-right: 15px;
   display: flex;
