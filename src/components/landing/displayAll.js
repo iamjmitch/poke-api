@@ -1,7 +1,8 @@
 import axios from "axios"
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import SinglePokemon from "../pokemonCard/singlePokemon.js"
+import SinglePokemon from "../pokemonCard/singlePokemon"
+import MobileSinglePokemon from "../pokemonCard/mobileSingle"
 
 const StyledDisplayAll = styled.div`
   background: white;
@@ -25,7 +26,7 @@ const DisplayAll = () => {
   return (
     <StyledDisplayAll>
       {pokeList.map((pokemon, index) => (
-        <SinglePokemon
+        <MobileSinglePokemon
           key={pokemon.name}
           name={pokemon.name}
           url={pokemon.url}

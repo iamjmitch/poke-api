@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 //--components--
-import NumberIcon from "./numberIcon"
+import MobileNumberIcon from "./mobileNumberIcon"
 //--styled-components
 
 const StyledSinglePokemon = styled.div`
@@ -14,7 +14,6 @@ const StyledSinglePokemon = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px;
-  height: 260px;
 `
 
 const StyledInnerDiv = styled.div`
@@ -24,7 +23,7 @@ const StyledInnerDiv = styled.div`
   align-items: center;
   text-align: center;
   .sprite {
-    height: 150px;
+    height: 120px;
   }
   p {
     font-size: 20px;
@@ -41,7 +40,7 @@ const StyledLoading = styled.div`
   align-items: center;
 `
 
-const SinglePokemon = ({ name, url, number }) => {
+const MobileSinglePokemon = ({ name, url, number }) => {
   const [pokemon, updatePokemon] = useState([])
   const [isLoading, updateIsLoading] = useState(true)
   const [imageLoaded, updateimageLoaded] = useState(false)
@@ -60,16 +59,14 @@ const SinglePokemon = ({ name, url, number }) => {
 
   return (
     <StyledSinglePokemon>
-      {console.log(pokemon)}
       {isLoading === false ? (
         <StyledInnerDiv>
-          <NumberIcon number={number} types={pokemon.types} />
-          <img
-            className="sprite"
-            src={pokemon.sprites.front_default}
-            alt={pokemon.name}
+          <MobileNumberIcon
+            number={number}
+            types={pokemon.types}
+            img={pokemon.sprites.front_default}
+            name={pokemon.name}
           />
-          <p>{`${pokemon.name.toProperCase()}`}</p>
         </StyledInnerDiv>
       ) : (
         <StyledLoading>
@@ -80,4 +77,4 @@ const SinglePokemon = ({ name, url, number }) => {
   )
 }
 
-export default SinglePokemon
+export default MobileSinglePokemon
