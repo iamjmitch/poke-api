@@ -38,6 +38,7 @@ const DisplayAll = () => {
             name={pokemon.name}
             url={pokemon.url}
             number={index + 1}
+            windowSize={windowSize}
           />
         ) : (
           <SinglePokemon

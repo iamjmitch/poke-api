@@ -40,7 +40,7 @@ const StyledLoading = styled.div`
   align-items: center;
 `
 
-const MobileSinglePokemon = ({ name, url, number }) => {
+const MobileSinglePokemon = ({ name, url, number, windowSize }) => {
   const [pokemon, updatePokemon] = useState([])
   const [isLoading, updateIsLoading] = useState(true)
   const [imageLoaded, updateimageLoaded] = useState(false)
@@ -66,6 +66,7 @@ const MobileSinglePokemon = ({ name, url, number }) => {
             types={pokemon.types}
             img={pokemon.sprites.front_default}
             name={pokemon.name}
+            windowSize={windowSize}
           />
         </StyledInnerDiv>
       ) : (

@@ -48,7 +48,7 @@ const StyledName = styled.div`
   font-weight: 500;
 `
 
-const MobileCard = ({ number, types, img, name }) => {
+const MobileCard = ({ number, types, img, name, windowSize }) => {
   String.prototype.toProperCase = function () {
     return this.replace(/\w\S*/g, function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
@@ -62,11 +62,15 @@ const MobileCard = ({ number, types, img, name }) => {
         <StyledNumber>#{number}</StyledNumber>
         <StyledName>{name.toProperCase()}</StyledName>
       </div>
-      <StyledIcon>
-        {types.map(pokemon => (
-          <Icon type={pokemon.type.name} key={pokemon.type.name} />
-        ))}
-      </StyledIcon>
+      {windowSize > 300 ? (
+        <StyledIcon>
+          {types.map(pokemon => (
+            <Icon type={pokemon.type.name} key={pokemon.type.name} />
+          ))}
+        </StyledIcon>
+      ) : (
+        ""
+      )}
     </StyledMobileCard>
   )
 }
