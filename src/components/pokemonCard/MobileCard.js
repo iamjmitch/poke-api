@@ -34,7 +34,6 @@ const StyledIcon = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
 `
 const StyledSprite = styled.img`
   width: 80px;
@@ -44,7 +43,7 @@ const StyledName = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 1em;
+  font-size: 1.3em;
   font-weight: 500;
 `
 
