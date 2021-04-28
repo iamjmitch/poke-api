@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 //--components--
-import MobileNumberIcon from "./mobileNumberIcon"
+import MobileCard from "./MobileCard"
 //--styled-components
 
 const StyledSinglePokemon = styled.div`
@@ -61,7 +61,7 @@ const MobileSinglePokemon = ({ name, url, number }) => {
     <StyledSinglePokemon>
       {isLoading === false ? (
         <StyledInnerDiv>
-          <MobileNumberIcon
+          <MobileCard
             number={number}
             types={pokemon.types}
             img={pokemon.sprites.front_default}

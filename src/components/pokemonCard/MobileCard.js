@@ -7,10 +7,17 @@ import Icon from "./icon"
 //--styles--
 
 //--styled-components
-const StyledNumberIcon = styled.div`
+const StyledMobileCard = styled.div`
   display: flex;
   flex-direction: row;
   padding: 5px;
+  .seperator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-left: 10px;
+  }
 `
 
 const StyledNumber = styled.div`
@@ -18,9 +25,8 @@ const StyledNumber = styled.div`
   font-size: 1.4em;
   font-weight: 500;
   font-family: "Fugaz One";
-  padding-right: 15px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `
 
@@ -36,13 +42,13 @@ const StyledSprite = styled.img`
 `
 const StyledName = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  font-size: 20px;
+  font-size: 1em;
   font-weight: 500;
 `
 
-const MobileNumberIcon = ({ number, types, img, name }) => {
+const MobileCard = ({ number, types, img, name }) => {
   String.prototype.toProperCase = function () {
     return this.replace(/\w\S*/g, function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
@@ -50,17 +56,19 @@ const MobileNumberIcon = ({ number, types, img, name }) => {
   }
 
   return (
-    <StyledNumberIcon>
+    <StyledMobileCard>
       <StyledSprite src={img} alt={name} />
-      <StyledNumber>#{number}</StyledNumber>
-      <StyledName>{name.toProperCase()}</StyledName>
+      <div className="seperator">
+        <StyledNumber>#{number}</StyledNumber>
+        <StyledName>{name.toProperCase()}</StyledName>
+      </div>
       <StyledIcon>
         {types.map(pokemon => (
           <Icon type={pokemon.type.name} key={pokemon.type.name} />
         ))}
       </StyledIcon>
-    </StyledNumberIcon>
+    </StyledMobileCard>
   )
 }
 
-export default MobileNumberIcon
+export default MobileCard

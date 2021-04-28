@@ -15,6 +15,7 @@ const StyledDisplayAll = styled.div`
 
 const DisplayAll = () => {
   const [pokeList, updatePokeList] = useState([])
+  const [windowSize, setWindowSize] = useState(0)
 
   useEffect(() => {
     // get data from GitHub api
@@ -23,16 +24,30 @@ const DisplayAll = () => {
       .then(response => updatePokeList(response.data.results))
   }, [])
 
+  useEffect(() => {
+    typeof window !== `undefined` ? setWindowSize(window.outerWidth) : ""
+    setWindowSize(window.outerWidth)
+  }, [typeof window])
+
   return (
     <StyledDisplayAll>
-      {pokeList.map((pokemon, index) => (
-        <MobileSinglePokemon
-          key={pokemon.name}
-          name={pokemon.name}
-          url={pokemon.url}
-          number={index + 1}
-        />
-      ))}
+      {pokeList.map((pokemon, index) =>
+        windowSize <= 440 ? (
+          <MobileSinglePokemon
+            key={pokemon.name}
+            name={pokemon.name}
+            url={pokemon.url}
+            number={index + 1}
+          />
+        ) : (
+          <SinglePokemon
+            key={pokemon.name}
+            name={pokemon.name}
+            url={pokemon.url}
+            number={index + 1}
+          />
+        )
+      )}
     </StyledDisplayAll>
   )
 }
