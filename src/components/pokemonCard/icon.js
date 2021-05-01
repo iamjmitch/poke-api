@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 //--components--
+import { getTypeColor } from "../helper/colorSelector"
 
 //--styles--
 const StyledIcon = styled.div`
@@ -25,68 +26,11 @@ const StyledIcon = styled.div`
 //--styled-components
 
 const Icon = ({ type }) => {
-  const [bg, SetBg] = useState("")
+  const [bg, setBg] = useState("")
 
   useEffect(() => {
-    switch (type) {
-      case "water":
-        SetBg("#6890F0")
-        break
-      case "steel":
-        SetBg("#B8B8D0")
-        break
-      case "rock":
-        SetBg("#B8A038")
-        break
-      case "psychic":
-        SetBg("#F85888")
-        break
-      case "poison":
-        SetBg("#A040A0")
-        break
-      case "normal":
-        SetBg("#A8A878")
-        break
-      case "ice":
-        SetBg("#98D8D8")
-        break
-      case "ground":
-        SetBg("#E0C068")
-        break
-      case "grass":
-        SetBg("#78C850")
-        break
-      case "ghost":
-        SetBg("#705898")
-        break
-      case "flying":
-        SetBg("#A890F0")
-        break
-      case "fire":
-        SetBg("#F08030")
-        break
-      case "fighting":
-        SetBg("#C03028")
-        break
-      case "fairy":
-        SetBg("#EE99AC")
-        break
-      case "electric":
-        SetBg("#F8D030")
-        break
-      case "dragon":
-        SetBg("#7038F8")
-        break
-      case "dark":
-        SetBg("#705848")
-        break
-      case "bug":
-        SetBg("#A8B820")
-        break
-      default:
-        SetBg("#000000")
-        break
-    }
+    let typeColor = getTypeColor(type)
+    setBg(typeColor)
   }, [type])
 
   return (

@@ -18,6 +18,10 @@ const StyledSinglePokemon = styled.div`
   margin: 10px;
   padding-bottom: 20px;
   min-height: 226px;
+  cursor: pointer;
+  &:hover {
+    background: #00000012;
+  }
 `
 
 const StyledInnerDiv = styled.div`
@@ -30,7 +34,7 @@ const StyledInnerDiv = styled.div`
   }
   p {
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 700;
     text-transform: capitalize;
   }
 `
@@ -65,9 +69,8 @@ const SinglePokemon = ({ name, url, number, toggleOverlay }) => {
   }
 
   const handleClick = () => {
-    setSelectedPokemon(pokemon.name)
+    setSelectedPokemon(number)
     toggleOverlay(true)
-    console.log("click")
   }
 
   return (
