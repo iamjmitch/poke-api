@@ -16,12 +16,13 @@ const StyledBadge = styled.div`
   padding: 2px 10px;
   border-radius: 30px;
   font-size: 0.9em;
+  font-weight: 500;
   color: white;
   text-transform: capitalize;
   margin: 0 5px;
   box-shadow: 0 0 4px 1px ${props => props.color};
   img {
-    height: 10px;
+    height: 15px;
     margin-right: 5px;
   }
 `

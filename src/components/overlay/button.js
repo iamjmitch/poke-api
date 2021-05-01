@@ -16,9 +16,9 @@ const StyledButton = styled.button`
   margin: 0 10px;
   color: white;
   text-transform: capitalize;
-  font-size: 0.8em;
+  font-size: 0.9em;
   border-radius: 20px;
-
+  font-weight: 500;
   box-shadow: 0 0 4px 1px ${props => props.color};
   &:hover {
     cursor: pointer;
