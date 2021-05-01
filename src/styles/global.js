@@ -18,6 +18,8 @@ body {
     box-sizing:border-box;
     font-family:"poppins";
   }
+
+  
 `
 
 export default GlobalStyle

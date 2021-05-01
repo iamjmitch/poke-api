@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 
 //--components--
-import Icon from "./icon"
+import Icon from "../icon"
 //--styles--
 
 //--styled-components
@@ -45,21 +45,16 @@ const StyledName = styled.div`
   align-items: center;
   font-size: 1.3em;
   font-weight: 500;
+  text-transform: capitalize;
 `
 
 const MobileCard = ({ number, types, img, name, windowSize }) => {
-  String.prototype.toProperCase = function () {
-    return this.replace(/\w\S*/g, function (txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-    })
-  }
-
   return (
     <StyledMobileCard>
       <StyledSprite src={img} alt={name} />
       <div className="seperator">
         <StyledNumber>#{number}</StyledNumber>
-        <StyledName>{name.toProperCase()}</StyledName>
+        <StyledName>{name}</StyledName>
       </div>
       {windowSize > 300 ? (
         <StyledIcon>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 //--components--
-import MobileCard from "./MobileCard"
+import MobileCard from "./pokemonCard"
 //--styled-components
 
 const StyledSinglePokemon = styled.div`

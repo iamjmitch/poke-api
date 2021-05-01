@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 
 //--components--
-import Icon from "./icon"
+import Icon from "../icon"
 //--styles--
 
 //--styled-components
@@ -11,6 +11,7 @@ const StyledNumberIcon = styled.div`
   display: flex;
   flex-direction: row;
   padding: 5px;
+  width: 100%;
 `
 
 const StyledNumber = styled.div`

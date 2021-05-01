@@ -1,8 +1,8 @@
 import axios from "axios"
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import SinglePokemon from "../pokemonCard/singlePokemon"
-import MobileSinglePokemon from "../pokemonCard/mobileSingle"
+import SinglePokemon from "../pokemonCard/desktop/pokemonCard"
+import MobileSinglePokemon from "../pokemonCard/mobile/pokemonSingle"
 
 const StyledDisplayAll = styled.div`
   background: white;
@@ -18,7 +18,6 @@ const DisplayAll = () => {
   const [windowSize, setWindowSize] = useState(0)
 
   useEffect(() => {
-    // get data from GitHub api
     axios
       .get(`https://pokeapi.co/api/v2/pokemon?limit=151`)
       .then(response => updatePokeList(response.data.results))
