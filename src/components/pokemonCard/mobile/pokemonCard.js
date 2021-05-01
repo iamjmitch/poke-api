@@ -48,10 +48,21 @@ const StyledName = styled.div`
   text-transform: capitalize;
 `
 
-const MobileCard = ({ number, types, img, name, windowSize }) => {
+const MobileCard = ({
+  number,
+  types,
+  img,
+  name,
+  windowSize,
+  updateimageLoaded,
+}) => {
+  const handleLoad = () => {
+    updateimageLoaded(true)
+  }
+
   return (
     <StyledMobileCard>
-      <StyledSprite src={img} alt={name} />
+      <StyledSprite src={img} alt={name} onLoad={handleLoad} />
       <div className="seperator">
         <StyledNumber>#{number}</StyledNumber>
         <StyledName>{name}</StyledName>
