@@ -1,6 +1,7 @@
 import axios from "axios"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
+import { PokemonContext } from "../../context/pokemonContext"
 
 //--components--
 import NumberIcon from "./numberIcon"
@@ -47,10 +48,11 @@ const LoadingImage = styled.img`
   width: 30px;
 `
 
-const SinglePokemon = ({ name, url, number }) => {
+const SinglePokemon = ({ name, url, number, toggleOverlay }) => {
   const [pokemon, updatePokemon] = useState([])
   const [isLoading, updateIsLoading] = useState(true)
   const [imageLoaded, updateimageLoaded] = useState(false)
+  const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
 
   useEffect(() => {
     axios.get(`${url}`).then(response => {
@@ -62,6 +64,12 @@ const SinglePokemon = ({ name, url, number }) => {
     updateimageLoaded(true)
   }
 
+  const handleClick = () => {
+    setSelectedPokemon(pokemon.name)
+    toggleOverlay(true)
+    console.log("click")
+  }
+
   return (
     <StyledSinglePokemon>
       {imageLoaded == false && (
@@ -71,7 +79,10 @@ const SinglePokemon = ({ name, url, number }) => {
         </div>
       )}
       {isLoading === false ? (
-        <div style={{ width: "100%", textAlign: "center" }}>
+        <div
+          style={{ width: "100%", textAlign: "center" }}
+          onClick={handleClick}
+        >
           <StyledInnerDiv loaded={imageLoaded}>
             <NumberIcon number={number} types={pokemon.types} />
             <img
@@ -81,7 +92,7 @@ const SinglePokemon = ({ name, url, number }) => {
               onLoad={handleLoad}
             />
             <p>{`${pokemon.name}`}</p>
-          </StyledInnerDiv>{" "}
+          </StyledInnerDiv>
         </div>
       ) : (
         ""
