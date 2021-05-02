@@ -10,11 +10,11 @@ import { Link } from "gatsby"
 //--styled-components
 
 const StyledButton = styled.button`
-  background: ${props => props.color};
+  background: ${props => (props.active == true ? props.color : "transparent")};
   border: none;
   padding: 3px 15px;
   margin: 0 10px;
-  color: white;
+  color: ${props => (props.active == true ? "white" : "black")};
   text-transform: capitalize;
   font-size: 0.9em;
   border-radius: 20px;
@@ -25,9 +25,13 @@ const StyledButton = styled.button`
   }
 `
 
-const Button = ({ text, color, action }) => {
+const Button = ({ text, color, action, active }) => {
+  let isActive = active == text
+
+  console.log(isActive)
+
   return (
-    <StyledButton onClick={() => action(text)} color={color}>
+    <StyledButton onClick={() => action(text)} color={color} active={isActive}>
       {text}
     </StyledButton>
   )

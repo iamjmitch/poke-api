@@ -33,8 +33,10 @@ const StyledTypeContainer = styled.div`
   display: flex;
 `
 const StyledDesc = styled.div`
-  width: 50%;
+  width: 100%;
   text-align: center;
+  max-width: 500px;
+  padding-bottom: 30px;
 
   padding-bottom: 30px;
 `

@@ -7,11 +7,12 @@ import axios from "axios"
 
 import { PokemonContext } from "../context/pokemonContext"
 import Description from "./pokemonDesc"
-import Stats from "./stats"
+import Stats from "./stats/stats"
 import Evolutions from "./evolutions"
 import Moves from "./moves"
 import Button from "./button"
 import { getTypeColor } from "../helper/colorSelector"
+import { arrow } from "../../../static/images/arrow"
 
 //--styled-components
 
@@ -27,7 +28,7 @@ const StyledOverlay = styled.div`
   align-items: center;
   background: ${props => props.BG};
   padding-top: 300px;
-  transition: 0.3s;
+  transition: opacity 0.3s;
 `
 const StyledOverlayContainer = styled.div`
   width: 100%;
@@ -43,6 +44,27 @@ const StyledOverlayContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   padding-bottom: 30px;
+`
+
+const StyledArrow = styled.div`
+  position: fixed;
+  left: 50px;
+  top: 70px;
+  &:hover {
+    cursor: pointer;
+    svg {
+      path {
+        fill-opacity: 0.6;
+      }
+    }
+  }
+  svg {
+    display: block;
+    width:auto;
+      fill-opacity: 0.3;
+      transition: 0.5s;
+    }
+  }
 `
 
 const Overlay = ({ toggleOverlay }) => {
@@ -76,7 +98,14 @@ const Overlay = ({ toggleOverlay }) => {
 
   return (
     <StyledOverlay BG={typeColor} dataLoaded={dataLoaded}>
-      {console.log(dataLoaded)}
+      <StyledArrow
+        onClick={() => {
+          toggleOverlay(false)
+        }}
+      >
+        {arrow}
+      </StyledArrow>
+      {/* {console.log(pokemonData)} */}
       {dataLoaded === true ? (
         <StyledOverlayContainer>
           <Description
@@ -88,17 +117,30 @@ const Overlay = ({ toggleOverlay }) => {
           />
 
           <ButtonContainer>
-            <Button color={typeColor} text="stats" action={handleButtonClick} />
+            <Button
+              color={typeColor}
+              active={currentTab}
+              text="stats"
+              action={handleButtonClick}
+            />
             <Button
               color={typeColor}
               text="evolutions"
               action={handleButtonClick}
+              active={currentTab}
             />
-            <Button color={typeColor} text="moves" action={handleButtonClick} />
+            <Button
+              color={typeColor}
+              active={currentTab}
+              text="moves"
+              action={handleButtonClick}
+            />
           </ButtonContainer>
-          {currentTab === "stats" && <Stats />}
+          {currentTab === "stats" && (
+            <Stats statsList={pokemonData.stats} typeColor={typeColor} />
+          )}
           {currentTab === "evolutions" && <Evolutions />}
-          {currentTab === "moves" && <Moves />}
+          {currentTab === "moves" && <Moves moves={pokemonData.moves} />}
         </StyledOverlayContainer>
       ) : (
         ""
