@@ -9,7 +9,8 @@ import { Link } from "gatsby"
 
 //--styled-components
 
-const Moves = () => {
+const Moves = ({ moves }) => {
+  //   console.log(moves)
   return <p>moves</p>
 }
 

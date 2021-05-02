@@ -36,7 +36,6 @@ const StyledDesc = styled.div`
   width: 100%;
   text-align: center;
   max-width: 500px;
-  padding-bottom: 30px;
 
   padding-bottom: 30px;
 `
@@ -53,6 +52,7 @@ const Description = ({ pokemonImage, pokemonType, typeColor }) => {
   const [data, setData] = useState(null)
 
   const getPokemonData = async () => {
+    // console.log(data)
     try {
       const response = await axios.get(
         `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}`

@@ -29,16 +29,21 @@ const StyledOverlay = styled.div`
   background: ${props => props.BG};
   padding-top: 300px;
   transition: opacity 0.3s;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 const StyledOverlayContainer = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: white;
-  border-top-left-radius: 60px;
-  border-top-right-radius: 60px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  padding: 0 15px 50px 15px;
 `
 
 const ButtonContainer = styled.div`
@@ -95,6 +100,8 @@ const Overlay = ({ toggleOverlay }) => {
   const handleButtonClick = tab => {
     setCurrentTab(tab)
   }
+
+  console.log(pokemonData)
 
   return (
     <StyledOverlay BG={typeColor} dataLoaded={dataLoaded}>
