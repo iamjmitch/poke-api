@@ -9,9 +9,11 @@ import IndividualMove from "./individualMove"
 
 //--styled-components
 const StyledMoveContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   width: 100%;
+  max-width: 500px;
+  grid-gap: 15px;
 
   align-items: center;
   overflow-y: scroll;

@@ -38,7 +38,7 @@ const StyledOverlay = styled.div`
 const StyledOverlayContainer = styled.div`
   margin-top: 276px;
   width: 100%;
-  height: calc(100% - 276px);
+  min-height: calc(100% - 276px);
   flex: 2;
 
   display: flex;

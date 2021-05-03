@@ -12,11 +12,11 @@ import Icon from "../../pokemonCard/icon"
 const StyledMove = styled.div`
   display: flex;
   align-items: center;
-  /* border-bottom: 1px solid #8080804d; */
+  border: 1px solid #8080804d;
   width: 100%;
-  max-width: 300px;
+
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 10px;
   font-weight: 500;
   text-transform: capitalize;
   &:hover {

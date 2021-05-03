@@ -60,7 +60,7 @@ const Evolutions = ({ url }) => {
         ? evolutionChain.map(
             species => species.index <= 151 && <p>{species.species_name}</p>
           )
-        : "loading..."}
+        : "Loading Data..."}
     </div>
   )
 }
