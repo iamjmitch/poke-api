@@ -42,7 +42,10 @@ const Moves = ({ moves }) => {
     ) {
       return -1
     }
-    if (a.last_nom > b.last_nom) {
+    if (
+      a.version_group_details[0].level_learned_at >
+      b.version_group_details[0].level_learned_at
+    ) {
       return 1
     }
     return 0

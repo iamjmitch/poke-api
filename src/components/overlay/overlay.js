@@ -17,6 +17,7 @@ import { arrow } from "../../../static/images/arrow"
 //--styled-components
 
 const StyledOverlay = styled.div`
+    position:relative
   opacity: ${props => (props.dataLoaded === true ? 1 : 0)};
   position: fixed;
   left: 0;
@@ -27,7 +28,7 @@ const StyledOverlay = styled.div`
   justify-content: center;
   align-items: center;
   background: ${props => props.BG};
-  padding-top: 300px;
+  
   transition: opacity 0.3s;
   overflow-y: scroll;
   &::-webkit-scrollbar {
@@ -35,6 +36,7 @@ const StyledOverlay = styled.div`
   }
 `
 const StyledOverlayContainer = styled.div`
+  margin-top: 600px;
   width: 100%;
   min-height: 100%;
   display: flex;
