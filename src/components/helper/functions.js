@@ -58,3 +58,19 @@ export const getTypeColor = type => {
       return "#000000"
   }
 }
+
+export const sortMoves = (a, b) => {
+  if (
+    a.version_group_details[0].level_learned_at <
+    b.version_group_details[0].level_learned_at
+  ) {
+    return -1
+  }
+  if (
+    a.version_group_details[0].level_learned_at >
+    b.version_group_details[0].level_learned_at
+  ) {
+    return 1
+  }
+  return 0
+}

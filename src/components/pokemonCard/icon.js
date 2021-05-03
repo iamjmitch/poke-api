@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 //--components--
-import { getTypeColor } from "../helper/colorSelector"
+import { getTypeColor } from "../helper/functions"
 
 //--styles--
 const StyledIcon = styled.div`

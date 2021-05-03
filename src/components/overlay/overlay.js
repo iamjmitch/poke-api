@@ -9,15 +9,15 @@ import { PokemonContext } from "../context/pokemonContext"
 import Description from "./pokemonDesc"
 import Stats from "./stats/stats"
 import Evolutions from "./evolutions"
-import Moves from "./moves"
+import Moves from "./moves/moves"
 import Button from "./button"
-import { getTypeColor } from "../helper/colorSelector"
+import { getTypeColor } from "../helper/functions"
 import { arrow } from "../../../static/images/arrow"
 
 //--styled-components
 
 const StyledOverlay = styled.div`
-    position:relative
+  position: relative;
   opacity: ${props => (props.dataLoaded === true ? 1 : 0)};
   position: fixed;
   left: 0;
@@ -25,20 +25,22 @@ const StyledOverlay = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   background: ${props => props.BG};
-  
   transition: opacity 0.3s;
   overflow-y: scroll;
+  overflow-x: hidden;
   &::-webkit-scrollbar {
     display: none;
   }
 `
 const StyledOverlayContainer = styled.div`
-  margin-top: 600px;
+  margin-top: 276px;
   width: 100%;
-  min-height: 100%;
+  height: calc(100% - 276px);
+  flex: 2;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +56,7 @@ const ButtonContainer = styled.div`
 `
 
 const StyledArrow = styled.div`
-  position: fixed;
+  position: absolute;
   left: 50px;
   top: 70px;
   &:hover {
