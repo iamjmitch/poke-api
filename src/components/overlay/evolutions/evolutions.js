@@ -33,6 +33,7 @@ const Evolutions = ({ url }) => {
 
       evoChain.push({
         species_name: evoData.species.name,
+        index: parseInt(evoData.species.url.split("/")[6]),
         min_level: !evoDetails ? 1 : evoDetails.min_level,
         trigger_name: !evoDetails ? null : evoDetails.trigger.name,
         item: !evoDetails ? null : evoDetails.item,
@@ -50,12 +51,16 @@ const Evolutions = ({ url }) => {
     evolutionData !== "" ? getEvolutionChain() : ""
   }, [evolutionData])
 
+  console.log(evolutionChain)
   console.log(evolutionData)
 
   return (
     <div>
-      {evolutionChain !== "" &&
-        evolutionChain.map(species => <p>{species.species_name}</p>)}
+      {evolutionChain !== ""
+        ? evolutionChain.map(
+            species => species.index <= 151 && <p>{species.species_name}</p>
+          )
+        : "loading..."}
     </div>
   )
 }
