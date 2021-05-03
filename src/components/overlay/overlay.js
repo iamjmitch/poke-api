@@ -8,7 +8,7 @@ import axios from "axios"
 import { PokemonContext } from "../context/pokemonContext"
 import Description from "./pokemonDesc"
 import Stats from "./stats/stats"
-import Evolutions from "./evolutions"
+import Evolutions from "./evolutions/evolutions"
 import Moves from "./moves/moves"
 import Button from "./button"
 import { getTypeColor } from "../helper/functions"
@@ -83,32 +83,40 @@ const Overlay = ({ toggleOverlay }) => {
   const [typeColor, setTypeColor] = useState(null)
   const [dataLoaded, setDataLoaded] = useState(false)
 
-  const getPokemonData = async () => {
+  const getData = async () => {
     try {
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`
-      )
-      setPokemonData(response.data)
-      let color = getTypeColor(response.data.types[0].type.name)
-      setTypeColor(color)
-      setDataLoaded(true)
+      axios
+        .all([
+          axios.get(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`),
+          axios.get(
+            `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}`
+          ),
+        ])
+        .then(
+          axios.spread((...responses) => {
+            const combinedData = { ...responses[0].data, ...responses[1].data }
+            setPokemonData(combinedData)
+            let color = getTypeColor(responses[0].data.types[0].type.name)
+            setTypeColor(color)
+            setDataLoaded(true)
+          })
+        )
     } catch (err) {
       console.log(err)
     }
   }
 
   useEffect(() => {
-    getPokemonData()
+    getData()
   }, [selectedPokemon])
 
   const handleButtonClick = tab => {
     setCurrentTab(tab)
   }
 
-  //   console.log(pokemonData)
-
   return (
     <StyledOverlay BG={typeColor} dataLoaded={dataLoaded}>
+      {console.log(pokemonData)}
       <StyledArrow
         onClick={() => {
           toggleOverlay(false)
@@ -116,13 +124,15 @@ const Overlay = ({ toggleOverlay }) => {
       >
         {arrow}
       </StyledArrow>
-      {/* {console.log(pokemonData)} */}
+      {console.log(pokemonData)}
       {dataLoaded === true ? (
         <StyledOverlayContainer>
           <Description
-            pokemon={selectedPokemon}
-            //prettier-ignore
-            pokemonImage={pokemonData.sprites.other["official-artwork"]["front_default"]}
+            name={pokemonData.name}
+            descList={pokemonData.flavor_text_entries}
+            pokemonImage={
+              pokemonData.sprites.other["official-artwork"]["front_default"]
+            }
             pokemonType={pokemonData.types}
             typeColor={typeColor}
           />

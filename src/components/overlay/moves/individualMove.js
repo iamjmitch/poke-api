@@ -49,7 +49,7 @@ const IndividualMove = ({ name, level, url }) => {
     getMoveData()
   }, [url])
 
-  console.log(moveData)
+  //   console.log(moveData)
   return (
     <StyledMove>
       <StyledTextContainer>

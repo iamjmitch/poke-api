@@ -45,34 +45,40 @@ String.prototype.toProperCase = function () {
   })
 }
 
-const Description = ({ pokemonImage, pokemonType, typeColor }) => {
+const Description = ({
+  name,
+  descList,
+  pokemonImage,
+  pokemonType,
+  typeColor,
+}) => {
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
-  const [name, setName] = useState(null)
   const [desc, setDesc] = useState(null)
-  const [data, setData] = useState(null)
-
-  const getPokemonData = async () => {
-    // console.log(data)
-    try {
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}`
-      )
-      setData(response.data)
-      setName(response.data.name)
-      let descNumber = Math.floor(Math.random() * 10)
-      setDesc(
-        response.data.flavor_text_entries[descNumber]["flavor_text"]
-          .replace(/\f/g, " ")
-          .toProperCase()
-      )
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
   useEffect(() => {
-    getPokemonData()
-  }, [selectedPokemon])
+    let descNumber = Math.floor(Math.random() * 10)
+    setDesc(
+      descList[descNumber]["flavor_text"].replace(/\f/g, " ").toProperCase()
+    )
+  }, [descList])
+
+  // const getPokemonData = async () => {
+  //   // console.log(data)
+  //   try {
+  //     const response = await axios.get(
+  //       `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}`
+  //     )
+  //     setName(response.data.name)
+  //     let descNumber = Math.floor(Math.random() * 10)
+  //     setDesc(
+  //       response.data.flavor_text_entries[descNumber]["flavor_text"]
+  //         .replace(/\f/g, " ")
+  //         .toProperCase()
+  //     )
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   return (
     <StyledDescContainer>
