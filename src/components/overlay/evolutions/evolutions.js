@@ -9,29 +9,55 @@ import { PokemonContext } from "../../context/pokemonContext"
 
 //--styled-components
 
-const Evolutions = () => {
-  const [evoData, setEvoData] = useState("")
+const Evolutions = ({ url }) => {
+  const [evolutionData, setEvolutionData] = useState("")
+  const [evolutionChain, setEvolutionChain] = useState("")
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
 
   const getEvolutionData = async () => {
     // console.log(data)
     try {
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/evolution-chain/${selectedPokemon}`
-      )
-      setEvoData(response.data)
+      const response = await axios.get(`${url}`)
+      setEvolutionData(response.data.chain)
     } catch (err) {
       console.log(err)
     }
   }
 
-  console.log(evoData)
+  const getEvolutionChain = () => {
+    var evoChain = []
+    var evoData = evolutionData
+
+    do {
+      var evoDetails = evoData["evolution_details"][0]
+
+      evoChain.push({
+        species_name: evoData.species.name,
+        min_level: !evoDetails ? 1 : evoDetails.min_level,
+        trigger_name: !evoDetails ? null : evoDetails.trigger.name,
+        item: !evoDetails ? null : evoDetails.item,
+      })
+
+      evoData = evoData["evolves_to"][0]
+    } while (!!evoData && evoData.hasOwnProperty("evolves_to"))
+    setEvolutionChain(evoChain)
+  }
 
   useEffect(() => {
     getEvolutionData()
   }, [selectedPokemon])
+  useEffect(() => {
+    evolutionData !== "" ? getEvolutionChain() : ""
+  }, [evolutionData])
 
-  return <p>evolutions</p>
+  console.log(evolutionData)
+
+  return (
+    <div>
+      {evolutionChain !== "" &&
+        evolutionChain.map(species => <p>{species.species_name}</p>)}
+    </div>
+  )
 }
 
 export default Evolutions

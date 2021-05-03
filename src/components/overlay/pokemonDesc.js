@@ -62,24 +62,6 @@ const Description = ({
     )
   }, [descList])
 
-  // const getPokemonData = async () => {
-  //   // console.log(data)
-  //   try {
-  //     const response = await axios.get(
-  //       `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon}`
-  //     )
-  //     setName(response.data.name)
-  //     let descNumber = Math.floor(Math.random() * 10)
-  //     setDesc(
-  //       response.data.flavor_text_entries[descNumber]["flavor_text"]
-  //         .replace(/\f/g, " ")
-  //         .toProperCase()
-  //     )
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-
   return (
     <StyledDescContainer>
       <StyledImgContainer>
@@ -89,7 +71,11 @@ const Description = ({
       <StyledTypeContainer>
         {typeof pokemonType !== []
           ? pokemonType.map(pokemon => (
-              <TypeBadge typeName={pokemon.type.name} typeColor={typeColor} />
+              <TypeBadge
+                key={pokemon.type.name}
+                typeName={pokemon.type.name}
+                typeColor={typeColor}
+              />
             ))
           : ""}
       </StyledTypeContainer>

@@ -116,7 +116,7 @@ const Overlay = ({ toggleOverlay }) => {
 
   return (
     <StyledOverlay BG={typeColor} dataLoaded={dataLoaded}>
-      {console.log(pokemonData)}
+      {/* {console.log(pokemonData)} */}
       <StyledArrow
         onClick={() => {
           toggleOverlay(false)
@@ -128,6 +128,7 @@ const Overlay = ({ toggleOverlay }) => {
       {dataLoaded === true ? (
         <StyledOverlayContainer>
           <Description
+            key={pokemonData.name}
             name={pokemonData.name}
             descList={pokemonData.flavor_text_entries}
             pokemonImage={
@@ -160,7 +161,9 @@ const Overlay = ({ toggleOverlay }) => {
           {currentTab === "stats" && (
             <Stats statsList={pokemonData.stats} typeColor={typeColor} />
           )}
-          {currentTab === "evolutions" && <Evolutions />}
+          {currentTab === "evolutions" && (
+            <Evolutions url={pokemonData.evolution_chain.url} />
+          )}
           {currentTab === "moves" && <Moves moves={pokemonData.moves} />}
         </StyledOverlayContainer>
       ) : (
