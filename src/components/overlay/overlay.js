@@ -101,7 +101,7 @@ const Overlay = ({ toggleOverlay }) => {
     setCurrentTab(tab)
   }
 
-  console.log(pokemonData)
+  //   console.log(pokemonData)
 
   return (
     <StyledOverlay BG={typeColor} dataLoaded={dataLoaded}>

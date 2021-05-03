@@ -35,9 +35,10 @@ const Stats = ({ statsList, typeColor }) => {
 
   return (
     <StyledStat>
-      {console.log(statsList)}
+      {/* {console.log(statsList)} */}
       {statsList.map(stat => (
         <IndividualStat
+          key={stat.stat.name}
           name={shortener(stat.stat.name)}
           base={stat.base_stat}
           typeColor={typeColor}

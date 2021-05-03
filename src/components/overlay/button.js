@@ -28,7 +28,7 @@ const StyledButton = styled.button`
 const Button = ({ text, color, action, active }) => {
   let isActive = active == text
 
-  console.log(isActive)
+  // console.log(isActive)
 
   return (
     <StyledButton onClick={() => action(text)} color={color} active={isActive}>
