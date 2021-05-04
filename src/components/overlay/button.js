@@ -31,7 +31,14 @@ const Button = ({ text, color, action, active }) => {
   // console.log(isActive)
 
   return (
-    <StyledButton onClick={() => action(text)} color={color} active={isActive}>
+    <StyledButton
+      onClick={e => {
+        e.preventDefault()
+        action(text)
+      }}
+      color={color}
+      active={isActive}
+    >
       {text}
     </StyledButton>
   )

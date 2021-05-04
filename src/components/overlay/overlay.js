@@ -110,8 +110,7 @@ const Overlay = ({ toggleOverlay }) => {
     getData()
   }, [selectedPokemon])
 
-  const handleButtonClick = event, tab => {
-    event.preventDefault()
+  const handleButtonClick = tab => {
     setCurrentTab(tab)
   }
 
