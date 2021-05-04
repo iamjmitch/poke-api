@@ -9,7 +9,7 @@ import { Link } from "gatsby"
 
 //--styled-components
 
-const StyledButton = styled.button`
+const StyledButton = styled.div`
   background: ${props => (props.active == true ? props.color : "transparent")};
   border: none;
   padding: 3px 15px;
