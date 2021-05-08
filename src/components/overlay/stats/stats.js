@@ -35,7 +35,6 @@ const Stats = ({ statsList, typeColor }) => {
 
   return (
     <StyledStat>
-      {/* {console.log(statsList)} */}
       {statsList.map(stat => (
         <IndividualStat
           key={stat.stat.name}

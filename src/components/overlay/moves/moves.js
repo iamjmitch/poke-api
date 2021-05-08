@@ -39,7 +39,6 @@ const Moves = ({ moves }) => {
     let newList = []
     moves.map(move => {
       if (move.version_group_details[0].level_learned_at > 0) {
-        // console.log(typeof movesList)
         let tempNewList = newList.push(move)
       }
     })

@@ -30,7 +30,6 @@ const Evolutions = ({ url }) => {
 
     do {
       var evoDetails = evoData["evolution_details"][0]
-
       evoChain.push({
         species_name: evoData.species.name,
         index: parseInt(evoData.species.url.split("/")[6]),
@@ -52,7 +51,6 @@ const Evolutions = ({ url }) => {
   }, [evolutionData])
 
   console.log(evolutionChain)
-  console.log(evolutionData)
 
   return (
     <div>

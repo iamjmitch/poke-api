@@ -24,11 +24,8 @@ const StyledButton = styled.div`
     cursor: pointer;
   }
 `
-
 const Button = ({ text, color, action, active }) => {
   let isActive = active == text
-
-  // console.log(isActive)
 
   return (
     <StyledButton

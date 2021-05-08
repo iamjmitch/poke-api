@@ -134,7 +134,6 @@ const Overlay = ({ toggleOverlay }) => {
       >
         {arrow}
       </StyledArrow>
-      {console.log(pokemonData)}
       {dataLoaded === true ? (
         <StyledOverlayContainer>
           <Description

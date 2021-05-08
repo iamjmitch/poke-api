@@ -64,6 +64,25 @@ const SinglePokemon = ({ name, url, number, toggleOverlay }) => {
     })
   }, [])
 
+  useEffect(() => {
+    addSpriteToStorage()
+  }, [isLoading])
+
+  const addSpriteToStorage = () => {
+    if (isLoading == false) {
+      if (localStorage.getItem("urlList")) {
+      } else {
+        localStorage.setItem("urlList", JSON.stringify({}))
+      }
+      if (localStorage.getItem("urlList")) {
+        let existingList = JSON.parse(localStorage.getItem("urlList"))
+        let newAdd = { [number]: pokemon.sprites.front_default }
+        existingList = { ...existingList, ...newAdd }
+        localStorage.setItem("urlList", JSON.stringify(existingList))
+      }
+    }
+  }
+
   const handleLoad = () => {
     updateimageLoaded(true)
   }
