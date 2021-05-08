@@ -21,10 +21,19 @@ const DisplayAll = () => {
   const [selectedPokemon, setSelectedPokemon] = useState(null)
   const [showOverlay, toggleOverlay] = useState(false)
 
+  const getPokeList = () => {
+    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=151`).then(response => {
+      updatePokeList(response.data.results)
+      localStorage.setItem("pokeList", JSON.stringify(response.data.results))
+    })
+  }
+
   useEffect(() => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon?limit=151`)
-      .then(response => updatePokeList(response.data.results))
+    if (localStorage.getItem("pokeList")) {
+      updatePokeList(JSON.parse(localStorage.getItem("pokeList")))
+    } else {
+      getPokeList()
+    }
   }, [])
 
   useEffect(() => {
