@@ -12,6 +12,7 @@ import { PokemonContext } from "../../context/pokemonContext"
 const Evolutions = ({ url }) => {
   const [evolutionData, setEvolutionData] = useState("")
   const [evolutionChain, setEvolutionChain] = useState("")
+  const [evolutionChainClean, setEvolutionChainClean] = useState("")
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
 
   const getEvolutionData = async () => {
@@ -43,22 +44,42 @@ const Evolutions = ({ url }) => {
     setEvolutionChain(evoChain)
   }
 
+  const limitPokemon = () => {
+    if (evolutionChain != "") {
+      const newList = []
+      evolutionChain.map(species => {
+        if (species.index <= 151) {
+          newList.push(species)
+        }
+      })
+      setEvolutionChainClean(newList)
+    }
+  }
+
+  useEffect(() => {
+    limitPokemon()
+  }, [evolutionChain])
+
   useEffect(() => {
     getEvolutionData()
   }, [selectedPokemon])
+  
   useEffect(() => {
     evolutionData !== "" ? getEvolutionChain() : ""
   }, [evolutionData])
 
-  console.log(evolutionChain)
+  console.log(evolutionData)
+  console.log(evolutionChainClean)
 
   return (
     <div>
-      {evolutionChain !== ""
-        ? evolutionChain.map(
-            species => species.index <= 151 && <p>{species.species_name}</p>
-          )
-        : "Loading Data..."}
+      
+        var i;
+        for (i = 0; i < cars.length; i++) {
+          text += cars[i] + "<br>"}
+        
+      
+      
     </div>
   )
 }
