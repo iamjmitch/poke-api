@@ -57,13 +57,13 @@ const Evolutions = ({ url }) => {
   //convert chain to mapable array
   const createSquence = chain => {
     let sequence = []
-    for (var i = 0; i < chain.length - 1; i++) {
+    for (var i = 1; i < chain.length; i++) {
       let step = {
-        from: chain[i].species_name,
-        tigger: chain[i + 1].trigger_name,
-        item: chain[i + 1].item?.name,
-        level: chain[i + 1].min_level,
-        to: chain[i + 1].species_name,
+        from: chain[i - 1].species_name,
+        tigger: chain[i].trigger_name,
+        item: chain[i].item?.name,
+        level: chain[i].min_level,
+        to: chain[i].species_name,
       }
       sequence.push(step)
     }
