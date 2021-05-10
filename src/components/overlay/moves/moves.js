@@ -49,6 +49,7 @@ const Moves = ({ moves }) => {
     <StyledMoveContainer>
       {sortedMovesList.map(p => (
         <IndividualMove
+          key={p.move.name}
           name={p.move.name}
           url={p.move.url}
           level={p.version_group_details[0].level_learned_at}

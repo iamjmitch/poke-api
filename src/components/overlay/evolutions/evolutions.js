@@ -10,22 +10,21 @@ import { PokemonContext } from "../../context/pokemonContext"
 //--styled-components
 
 const Evolutions = ({ url }) => {
-  const [evolutionData, setEvolutionData] = useState("")
-  const [evolutionChain, setEvolutionChain] = useState("")
-  const [evolutionChainClean, setEvolutionChainClean] = useState("")
+  const [evoChain, setEvoChain] = useState("")
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
 
+  // Get unrefined data from api
   const getEvolutionData = async () => {
-    // console.log(data)
     try {
       const response = await axios.get(`${url}`)
-      setEvolutionData(response.data.chain)
+      generateEvoChain(response.data.chain)
     } catch (err) {
       console.log(err)
     }
   }
 
-  const getEvolutionChain = () => {
+  // extract useable data from api return
+  const generateEvoChain = evolutionData => {
     var evoChain = []
     var evoData = evolutionData
 
@@ -41,49 +40,48 @@ const Evolutions = ({ url }) => {
 
       evoData = evoData["evolves_to"][0]
     } while (!!evoData && evoData.hasOwnProperty("evolves_to"))
-    setEvolutionChain(evoChain)
+    firstGenOnly(evoChain)
   }
 
-  const limitPokemon = () => {
-    if (evolutionChain != "") {
-      const newList = []
-      evolutionChain.map(species => {
-        if (species.index <= 151) {
-          newList.push(species)
-        }
-      })
-      setEvolutionChainClean(newList)
+  // only include gen 1 pokemon
+  const firstGenOnly = evoChain => {
+    const newList = []
+    evoChain.map(species => {
+      if (species.index <= 151) {
+        newList.push(species)
+      }
+    })
+    createSquence(newList)
+  }
+
+  //convert chain to mapable array
+  const createSquence = chain => {
+    let sequence = []
+    for (var i = 0; i < chain.length - 1; i++) {
+      let step = {
+        from: chain[i].species_name,
+        tigger: chain[i + 1].trigger_name,
+        item: chain[i + 1].item?.name,
+        level: chain[i + 1].min_level,
+        to: chain[i + 1].species_name,
+      }
+      sequence.push(step)
     }
+    setEvoChain(sequence)
   }
 
-  useEffect(() => {
-    limitPokemon()
-  }, [evolutionChain])
-
+  //run once on component mount
   useEffect(() => {
     getEvolutionData()
   }, [selectedPokemon])
-  
-  useEffect(() => {
-    evolutionData !== "" ? getEvolutionChain() : ""
-  }, [evolutionData])
-
-  console.log(evolutionData)
-  console.log(evolutionChainClean)
-
+  console.log(evoChain)
   return (
     <div>
-      
-        var i;
-        for (i = 0; i < cars.length; i++) {
-          text += cars[i] + "<br>"}
-        
-      
-      
+      {evoChain !== ""
+        ? evoChain.map(evo => <p key={evo.species_name}>{evo.from}</p>)
+        : ""}
     </div>
   )
 }
 
 export default Evolutions
-
-// https://pokeapi.co/api/v2/evolution-chain/2/
