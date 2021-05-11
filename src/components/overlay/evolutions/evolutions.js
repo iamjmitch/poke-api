@@ -68,12 +68,13 @@ const Evolutions = ({ url, typeColor }) => {
   useEffect(() => {
     getEvolutionData()
   }, [selectedPokemon])
-  // console.log(evoChain)
+
   return (
     <div>
       {evoChain !== ""
         ? evoChain.map(evo => <SingleEvo chain={evo} typeColor={typeColor} />)
         : ""}
+      {evoChain.length === 0 && "This Pokemon Has No Evolutions"}
     </div>
   )
 }
