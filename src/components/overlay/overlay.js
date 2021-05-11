@@ -55,6 +55,15 @@ const ButtonContainer = styled.div`
   padding-bottom: 30px;
 `
 
+const TabContainer = styled.div`
+  display: flex;
+  padding-bottom: 30px;
+  width: 500px;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 50vh;
+`
+
 const StyledArrow = styled.div`
   position: absolute;
   left: 50px;
@@ -165,7 +174,7 @@ const Overlay = ({ toggleOverlay }) => {
             />
           </ButtonContainer>
 
-          <div style={{ minHeight: "50vh", width: "100%" }}>
+          <TabContainer>
             {currentTab === "stats" && (
               <Stats
                 key="stats"
@@ -183,7 +192,7 @@ const Overlay = ({ toggleOverlay }) => {
             {currentTab === "moves" && (
               <Moves key="moves" moves={pokemonData.moves} />
             )}
-          </div>
+          </TabContainer>
         </StyledOverlayContainer>
       ) : (
         ""

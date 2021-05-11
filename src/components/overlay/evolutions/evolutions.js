@@ -8,6 +8,11 @@ import { PokemonContext } from "../../context/pokemonContext"
 import SingleEvo from "./singleEvolution"
 //--styles--
 
+const StyledContainer = styled.div`
+  width: 500px;
+  display: flex;
+`
+
 //--styled-components
 
 const Evolutions = ({ url, typeColor }) => {
