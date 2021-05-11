@@ -15,6 +15,23 @@ const Layout = () => (
     <GlobalStyle />
     <Header />
     <DisplayAll />
+    <div
+      style={{
+        width: "100%",
+        textAlign: "center",
+        paddingTop: "50px",
+        fontSize: "0.8em",
+      }}
+    >
+      <a
+        style={{ textDecoration: "none", textAlign: "center" }}
+        href="https://dribbble.com/DanielMots"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Design By Daniel Motta
+      </a>
+    </div>
   </StyledLayout>
 )
 
