@@ -21,6 +21,9 @@ const PokemonContainer = styled.div`
   text-transform: capitalize;
   text-align: center;
   margin: 0 15px;
+  &.info {
+    min-width: 100px;
+  }
   b {
     font-weight: 500;
     font-size: 0.8em;
@@ -50,7 +53,7 @@ const SingleEvo = ({ chain, typeColor }) => {
         <FromPokemonImg src={imgList[`${chain.fromNum}`]} />
         {chain.from}
       </PokemonContainer>
-      <PokemonContainer svgColor={typeColor}>
+      <PokemonContainer className="info" svgColor={typeColor}>
         {arrow}
         <b>
           <p>

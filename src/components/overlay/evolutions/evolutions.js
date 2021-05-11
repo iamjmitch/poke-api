@@ -73,8 +73,10 @@ const Evolutions = ({ url, typeColor }) => {
     <div>
       {evoChain !== ""
         ? evoChain.map(evo => <SingleEvo chain={evo} typeColor={typeColor} />)
-        : ""}
-      {evoChain.length === 0 && "This Pokemon Has No Evolutions"}
+        : "Loading..."}
+      {evoChain !== "" &&
+        evoChain.length === 0 &&
+        "This Pokemon Has No Evolutions"}
     </div>
   )
 }

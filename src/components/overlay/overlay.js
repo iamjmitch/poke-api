@@ -68,11 +68,18 @@ const StyledArrow = styled.div`
     }
   }
   svg {
+    height: 10vw;
+    max-height: 100px;
     display: block;
-    width:auto;
-      fill-opacity: 0.3;
-      transition: 0.5s;
-    }
+    width: auto;
+    fill-opacity: 0.3;
+    transition: 0.5s;
+  }
+
+  /* mobile */
+  @media (max-width: 480px) {
+    left: 15px;
+    top: 15px;
   }
 `
 
@@ -96,7 +103,6 @@ const Overlay = ({ toggleOverlay }) => {
         .then(
           axios.spread((...responses) => {
             const combinedData = { ...responses[0].data, ...responses[1].data }
-            localStorage.setItem(localStorageName, JSON.stringify(combinedData))
             setPokemonData(combinedData)
             let color = getTypeColor(responses[0].data.types[0].type.name)
             setTypeColor(color)
@@ -109,15 +115,7 @@ const Overlay = ({ toggleOverlay }) => {
   }
 
   useEffect(() => {
-    if (localStorage.getItem(localStorageName)) {
-      const data = JSON.parse(localStorage.getItem(localStorageName))
-      setPokemonData(data)
-      let color = getTypeColor(data.types[0].type.name)
-      setTypeColor(color)
-      setDataLoaded(true)
-    } else {
-      getData()
-    }
+    getData()
   }, [selectedPokemon])
 
   const handleButtonClick = tab => {

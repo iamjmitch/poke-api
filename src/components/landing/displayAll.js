@@ -50,25 +50,15 @@ const DisplayAll = () => {
     >
       <StyledDisplayAll>
         {showOverlay == true && <Overlay toggleOverlay={toggleOverlay} />}
-        {pokeList.map((pokemon, index) =>
-          windowSize <= 440 ? (
-            <MobileSinglePokemon
-              key={pokemon.name}
-              name={pokemon.name}
-              url={pokemon.url}
-              number={index + 1}
-              windowSize={windowSize}
-            />
-          ) : (
-            <SinglePokemon
-              key={pokemon.name}
-              name={pokemon.name}
-              url={pokemon.url}
-              number={index + 1}
-              toggleOverlay={toggleOverlay}
-            />
-          )
-        )}
+        {pokeList.map((pokemon, index) => (
+          <SinglePokemon
+            key={pokemon.name}
+            name={pokemon.name}
+            url={pokemon.url}
+            number={index + 1}
+            toggleOverlay={toggleOverlay}
+          />
+        ))}
       </StyledDisplayAll>
     </PokemonContext.Provider>
   )
