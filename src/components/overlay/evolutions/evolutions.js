@@ -5,11 +5,12 @@ import axios from "axios"
 
 //--components--
 import { PokemonContext } from "../../context/pokemonContext"
+import SingleEvo from "./singleEvolution"
 //--styles--
 
 //--styled-components
 
-const Evolutions = ({ url }) => {
+const Evolutions = ({ url, typeColor }) => {
   const [evoChain, setEvoChain] = useState("")
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
 
@@ -30,28 +31,19 @@ const Evolutions = ({ url }) => {
 
     do {
       var evoDetails = evoData["evolution_details"][0]
-      evoChain.push({
-        species_name: evoData.species.name,
-        index: parseInt(evoData.species.url.split("/")[6]),
-        min_level: !evoDetails ? 1 : evoDetails.min_level,
-        trigger_name: !evoDetails ? null : evoDetails.trigger.name,
-        item: !evoDetails ? null : evoDetails.item,
-      })
+      if (parseInt(evoData.species.url.split("/")[6]) < 151) {
+        evoChain.push({
+          species_name: evoData.species.name,
+          index: parseInt(evoData.species.url.split("/")[6]),
+          min_level: !evoDetails ? 1 : evoDetails.min_level,
+          trigger_name: !evoDetails ? null : evoDetails.trigger.name,
+          item: !evoDetails ? null : evoDetails.item,
+        })
+      }
 
       evoData = evoData["evolves_to"][0]
     } while (!!evoData && evoData.hasOwnProperty("evolves_to"))
-    firstGenOnly(evoChain)
-  }
-
-  // only include gen 1 pokemon
-  const firstGenOnly = evoChain => {
-    const newList = []
-    evoChain.map(species => {
-      if (species.index <= 151) {
-        newList.push(species)
-      }
-    })
-    createSquence(newList)
+    createSquence(evoChain)
   }
 
   //convert chain to mapable array
@@ -60,10 +52,12 @@ const Evolutions = ({ url }) => {
     for (var i = 1; i < chain.length; i++) {
       let step = {
         from: chain[i - 1].species_name,
-        tigger: chain[i].trigger_name,
-        item: chain[i].item?.name,
+        fromNum: chain[i - 1].index,
+        trigger: chain[i].trigger_name,
+        item: chain[i].item,
         level: chain[i].min_level,
         to: chain[i].species_name,
+        toNum: chain[i].index,
       }
       sequence.push(step)
     }
@@ -74,11 +68,11 @@ const Evolutions = ({ url }) => {
   useEffect(() => {
     getEvolutionData()
   }, [selectedPokemon])
-  console.log(evoChain)
+  // console.log(evoChain)
   return (
     <div>
       {evoChain !== ""
-        ? evoChain.map(evo => <p key={evo.species_name}>{evo.from}</p>)
+        ? evoChain.map(evo => <SingleEvo chain={evo} typeColor={typeColor} />)
         : ""}
     </div>
   )

@@ -56,7 +56,7 @@ const Description = ({
   const [desc, setDesc] = useState(null)
 
   useEffect(() => {
-    let descNumber = Math.floor(Math.random() * 10)
+    let descNumber = Math.floor(Math.random() * 3)
     setDesc(
       descList[descNumber]["flavor_text"].replace(/\f/g, " ").toProperCase()
     )
