@@ -43,7 +43,7 @@ const FromPokemonImg = styled.img``
 
 const SingleEvo = ({ chain, typeColor }) => {
   const imgList = JSON.parse(localStorage.getItem("urlList"))
-  console.log(chain)
+
   return (
     <StyledContainer>
       <PokemonContainer>
