@@ -19,12 +19,12 @@ const Layout = () => (
       style={{
         width: "100%",
         textAlign: "center",
-        paddingTop: "50px",
+        padding: "25px 0",
         fontSize: "0.8em",
       }}
     >
       <a
-        style={{ textDecoration: "none", textAlign: "center" }}
+        style={{ textDecoration: "none", textAlign: "center", color: "black" }}
         href="https://dribbble.com/DanielMots"
         rel="noreferrer"
         target="_blank"
