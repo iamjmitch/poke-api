@@ -144,7 +144,6 @@ const Overlay = ({ toggleOverlay }) => {
             pokemonType={pokemonData.types}
             typeColor={typeColor}
           />
-
           <ButtonContainer>
             <Button
               color={typeColor}
@@ -165,23 +164,26 @@ const Overlay = ({ toggleOverlay }) => {
               action={handleButtonClick}
             />
           </ButtonContainer>
-          {currentTab === "stats" && (
-            <Stats
-              key="stats"
-              statsList={pokemonData.stats}
-              typeColor={typeColor}
-            />
-          )}
-          {currentTab === "evolutions" && (
-            <Evolutions
-              key="evos"
-              url={pokemonData.evolution_chain.url}
-              typeColor={typeColor}
-            />
-          )}
-          {currentTab === "moves" && (
-            <Moves key="moves" moves={pokemonData.moves} />
-          )}
+
+          <div style={{ minHeight: "50vh", width: "100%" }}>
+            {currentTab === "stats" && (
+              <Stats
+                key="stats"
+                statsList={pokemonData.stats}
+                typeColor={typeColor}
+              />
+            )}
+            {currentTab === "evolutions" && (
+              <Evolutions
+                key="evos"
+                url={pokemonData.evolution_chain.url}
+                typeColor={typeColor}
+              />
+            )}
+            {currentTab === "moves" && (
+              <Moves key="moves" moves={pokemonData.moves} />
+            )}
+          </div>
         </StyledOverlayContainer>
       ) : (
         ""

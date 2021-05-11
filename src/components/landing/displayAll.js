@@ -13,6 +13,10 @@ const StyledDisplayAll = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   grid-gap: 5px;
   padding: 10px;
+  /* mobile */
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+  }
 `
 
 const DisplayAll = () => {
