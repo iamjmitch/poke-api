@@ -58,7 +58,7 @@ const ButtonContainer = styled.div`
 const TabContainer = styled.div`
   display: flex;
   padding-bottom: 30px;
-  width: 500px;
+
   justify-content: center;
   align-items: flex-start;
   min-height: 50vh;
