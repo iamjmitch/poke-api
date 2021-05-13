@@ -1,10 +1,11 @@
 //--dependancies--
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
 //--components--
 import { arrow } from "../../../../static/images/evoArrow"
+import { PokemonContext } from "../../context/pokemonContext"
 //--styles--
 
 //--styled-components
@@ -21,6 +22,7 @@ const PokemonContainer = styled.div`
   text-transform: capitalize;
   text-align: center;
   margin: 0 15px;
+  cursor: ${props => (props.hover ? "pointer" : "auto")};
   &.info {
     min-width: 100px;
   }
@@ -46,10 +48,16 @@ const FromPokemonImg = styled.img``
 
 const SingleEvo = ({ chain, typeColor }) => {
   const imgList = JSON.parse(localStorage.getItem("urlList"))
+  const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
+
+  const handleClick = number => {
+    setSelectedPokemon(number)
+    console.log(chain.toNum)
+  }
 
   return (
     <StyledContainer>
-      <PokemonContainer>
+      <PokemonContainer onClick={() => handleClick(chain.fromNum)} hover={true}>
         <FromPokemonImg src={imgList[`${chain.fromNum}`]} />
         {chain.from}
       </PokemonContainer>
@@ -73,7 +81,7 @@ const SingleEvo = ({ chain, typeColor }) => {
           </p>
         </b>
       </PokemonContainer>
-      <PokemonContainer>
+      <PokemonContainer onClick={() => handleClick(chain.toNum)} hover={true}>
         <ToPokemonImg src={imgList[`${chain.toNum}`]} />
         {chain.to}
       </PokemonContainer>
