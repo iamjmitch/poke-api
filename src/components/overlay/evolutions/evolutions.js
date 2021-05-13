@@ -34,9 +34,8 @@ const Evolutions = ({ url, typeColor }) => {
   const generateEvoChain = evolutionData => {
     var evoChain = []
     var evoData = evolutionData
-
+    let numOfEvos = evoData.evolves_to.length
     do {
-      let numOfEvos = evoData.evolves_to.length
       var evoDetails = evoData["evolution_details"][0]
       console.log(evoDetails)
       if (parseInt(evoData.species.url.split("/")[6]) < 151) {
@@ -50,9 +49,11 @@ const Evolutions = ({ url, typeColor }) => {
       }
 
       if (numOfEvos > 1) {
-        for (let i = 1; i < numOfEvos; i++) {
+        for (let i = 0; i < numOfEvos; i++) {
           if (parseInt(evoData.evolves_to[i].species.url.split("/")[6]) < 151) {
             evoChain.push({
+              fromPokemonNum: evoData.species.url.split("/")[6],
+              fromPokemonName: evoData.species.name,
               species_name: evoData.evolves_to[i].species.name,
               index: parseInt(evoData.evolves_to[i].species.url.split("/")[6]),
               min_level: !evoData.evolves_to[i]
@@ -70,8 +71,9 @@ const Evolutions = ({ url, typeColor }) => {
       }
 
       evoData = evoData["evolves_to"][0]
-    } while (!!evoData && evoData.hasOwnProperty("evolves_to"))
+    } while (!!evoData && evoData.hasOwnProperty("evolves_to") && numOfEvos < 2)
     createSquence(evoChain)
+    console.log(evoChain)
   }
 
   //convert chain to mapable array
@@ -79,8 +81,12 @@ const Evolutions = ({ url, typeColor }) => {
     let sequence = []
     for (var i = 1; i < chain.length; i++) {
       let step = {
-        from: chain[i - 1].species_name,
-        fromNum: chain[i - 1].index,
+        from: !chain[i].fromPokemonName
+          ? chain[i - 1].species_name
+          : chain[1].fromPokemonName,
+        fromNum: !chain[i].fromPokemonNum
+          ? chain[i - 1].index
+          : chain[i].fromPokemonNum,
         trigger: chain[i].trigger_name,
         item: chain[i].item,
         level: chain[i].min_level,
