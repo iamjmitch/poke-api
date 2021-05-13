@@ -57,10 +57,20 @@ const SingleEvo = ({ chain, typeColor }) => {
         {arrow}
         <b>
           <p>
-            {chain.trigger !== null && `${chain.trigger.replace("-", " ")}`}
+            {chain.trigger !== null &&
+              chain.trigger !== undefined &&
+              `${chain.trigger.replace("-", " ")}`}
           </p>
-          <p>{chain.item !== null && `${chain.item.name.replace("-", " ")}`}</p>
-          <p>{chain.level !== null && `Required Level: ${chain.level}`}</p>
+          <p>
+            {chain.item !== null &&
+              chain.item !== undefined &&
+              `${chain.item.name.replace("-", " ")}`}
+          </p>
+          <p>
+            {chain.level !== null &&
+              chain.level !== undefined &&
+              `Required Level: ${chain.level}`}
+          </p>
         </b>
       </PokemonContainer>
       <PokemonContainer>

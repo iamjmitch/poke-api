@@ -24,6 +24,7 @@ const Evolutions = ({ url, typeColor }) => {
     try {
       const response = await axios.get(`${url}`)
       generateEvoChain(response.data.chain)
+      console.log(response.data.chain)
     } catch (err) {
       console.log(err)
     }
@@ -35,15 +36,37 @@ const Evolutions = ({ url, typeColor }) => {
     var evoData = evolutionData
 
     do {
+      let numOfEvos = evoData.evolves_to.length
       var evoDetails = evoData["evolution_details"][0]
+      console.log(evoDetails)
       if (parseInt(evoData.species.url.split("/")[6]) < 151) {
         evoChain.push({
           species_name: evoData.species.name,
           index: parseInt(evoData.species.url.split("/")[6]),
           min_level: !evoDetails ? 1 : evoDetails.min_level,
-          trigger_name: !evoDetails ? null : evoDetails.trigger.name,
+          trigger_name: !evoDetails ? null : evoDetails.trigger?.name,
           item: !evoDetails ? null : evoDetails.item,
         })
+      }
+
+      if (numOfEvos > 1) {
+        for (let i = 1; i < numOfEvos; i++) {
+          if (parseInt(evoData.evolves_to[i].species.url.split("/")[6]) < 151) {
+            evoChain.push({
+              species_name: evoData.evolves_to[i].species.name,
+              index: parseInt(evoData.evolves_to[i].species.url.split("/")[6]),
+              min_level: !evoData.evolves_to[i]
+                ? 1
+                : evoData.evolves_to[i].evolution_details[0].min_level,
+              trigger_name: !evoData.evolves_to[i]
+                ? null
+                : evoData.evolves_to[i].evolution_details[0].trigger?.name,
+              item: !evoData.evolves_to[i]
+                ? null
+                : evoData.evolves_to[i].evolution_details[0].item,
+            })
+          }
+        }
       }
 
       evoData = evoData["evolves_to"][0]
