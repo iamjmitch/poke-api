@@ -58,9 +58,11 @@ const TabContainer = styled.div`
   display: flex;
   padding-bottom: 30px;
   width: 100%;
+  height: 50vh;
+  overflow-y: scroll;
   justify-content: center;
   align-items: flex-start;
-  min-height: 50vh;
+  max-height: 600px;
 `
 
 const StyledArrow = styled.div`
