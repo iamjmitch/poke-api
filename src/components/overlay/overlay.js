@@ -40,7 +40,6 @@ const StyledOverlayContainer = styled.div`
   width: 100%;
   min-height: calc(100% - 276px);
   flex: 2;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +57,7 @@ const ButtonContainer = styled.div`
 const TabContainer = styled.div`
   display: flex;
   padding-bottom: 30px;
-
+  width: 100%;
   justify-content: center;
   align-items: flex-start;
   min-height: 50vh;
