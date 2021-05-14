@@ -21,6 +21,7 @@ const Layout = () => (
         textAlign: "center",
         padding: "25px 0",
         fontSize: "0.8em",
+        background: "white",
       }}
     >
       <a href="https://iamjmitch.com" target="_blank">
