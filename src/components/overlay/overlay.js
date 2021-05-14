@@ -55,15 +55,28 @@ const ButtonContainer = styled.div`
 `
 
 const TabContainer = styled.div`
-  display: flex;
+  display: inline-block;
   padding-bottom: 30px;
   width: 100%;
-  height: 50vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  justify-content: center;
-  align-items: flex-start;
-  max-height: 600px;
+  max-width: 500px;
+  overflow: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* mobile */
+  @media (min-width: 500px) {
+    max-height: unset;
+    height: unset;
+  }
+`
+const TabContainerInner = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-left: ${props => (props.tab == "stats" ? "0" : "")};
+  margin-left: ${props => (props.tab == "evolutions" ? "-500px" : "")};
+  margin-left: ${props => (props.tab == "moves" ? "-1000px" : "")};
+  transition: margin 0.3s ease-in-out;
 `
 
 const StyledArrow = styled.div`
@@ -177,23 +190,20 @@ const Overlay = ({ toggleOverlay }) => {
           </ButtonContainer>
 
           <TabContainer>
-            {currentTab === "stats" && (
+            <TabContainerInner tab={currentTab}>
               <Stats
                 key="stats"
                 statsList={pokemonData.stats}
                 typeColor={typeColor}
               />
-            )}
-            {currentTab === "evolutions" && (
+
               <Evolutions
                 key="evos"
                 url={pokemonData.evolution_chain.url}
                 typeColor={typeColor}
               />
-            )}
-            {currentTab === "moves" && (
               <Moves key="moves" moves={pokemonData.moves} />
-            )}
+            </TabContainerInner>
           </TabContainer>
         </StyledOverlayContainer>
       ) : (

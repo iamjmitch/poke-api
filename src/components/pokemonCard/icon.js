@@ -19,7 +19,7 @@ const StyledIcon = styled.div`
   align-items: center;
   margin: 0 4px;
   img {
-    width: 80%;
+    width: 100%;
     height: auto;
   }
 `

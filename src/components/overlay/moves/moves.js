@@ -11,7 +11,7 @@ import IndividualMove from "./individualMove"
 const StyledMoveContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  width: 100%;
+  width: 100vw;
   max-width: 500px;
   grid-gap: 15px;
 

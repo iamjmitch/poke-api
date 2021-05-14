@@ -10,6 +10,9 @@ import SingleEvo from "./singleEvolution"
 
 const StyledContainer = styled.div`
   display: flex;
+  width: 100vw;
+  max-width: 500px;
+  flex-direction: column;
 `
 
 //--styled-components
@@ -103,14 +106,14 @@ const Evolutions = ({ url, typeColor }) => {
   }, [selectedPokemon])
 
   return (
-    <div>
+    <StyledContainer>
       {evoChain !== ""
         ? evoChain.map(evo => <SingleEvo chain={evo} typeColor={typeColor} />)
         : "Loading..."}
       {evoChain !== "" &&
         evoChain.length === 0 &&
         "This Pokemon Has No Evolutions"}
-    </div>
+    </StyledContainer>
   )
 }
 

@@ -9,8 +9,8 @@ import IndividualStat from "./individualStat"
 
 //--styled-components
 const StyledStat = styled.div`
-  width: 100%;
-  max-width: 400px;
+  width: 100vw;
+  max-width: 500px;
 `
 
 const Stats = ({ statsList, typeColor }) => {
