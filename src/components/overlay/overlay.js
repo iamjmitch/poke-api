@@ -59,7 +59,8 @@ const TabContainer = styled.div`
   padding-bottom: 30px;
   width: 100%;
   max-width: 500px;
-  overflow: hidden;
+  max-height: 500px;
+  overflow-y: scroll;
 
   &::-webkit-scrollbar {
     display: none;
@@ -73,9 +74,12 @@ const TabContainer = styled.div`
 const TabContainerInner = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin-left: ${props => (props.tab == "stats" ? "0" : "")};
-  margin-left: ${props => (props.tab == "evolutions" ? "-500px" : "")};
-  margin-left: ${props => (props.tab == "moves" ? "-1000px" : "")};
+  width: ${props => props.tabSize * 3}px;
+  margin-left: ${props => (props.tab == "stats" ? "0px" : "")};
+  margin-left: ${props =>
+    props.tab == "evolutions" ? props => "-" + props.tabSize + "px" : ""};
+  margin-left: ${props =>
+    props.tab == "moves" ? props => "-" + props.tabSize * 2 + "px" : ""};
   transition: margin 0.3s ease-in-out;
 `
 
@@ -113,7 +117,8 @@ const Overlay = ({ toggleOverlay }) => {
   const [currentTab, setCurrentTab] = useState("stats")
   const [typeColor, setTypeColor] = useState(null)
   const [dataLoaded, setDataLoaded] = useState(false)
-  const localStorageName = selectedPokemon + "info"
+  const [tabSize, setTabSize] = useState(0)
+  const tabContainer = useRef()
 
   const getData = async () => {
     try {
@@ -131,6 +136,7 @@ const Overlay = ({ toggleOverlay }) => {
             let color = getTypeColor(responses[0].data.types[0].type.name)
             setTypeColor(color)
             setDataLoaded(true)
+            setTabSize(tabContainer.current.offsetWidth)
           })
         )
     } catch (err) {
@@ -148,7 +154,6 @@ const Overlay = ({ toggleOverlay }) => {
 
   return (
     <StyledOverlay BG={typeColor} dataLoaded={dataLoaded}>
-      {/* {console.log(pokemonData)} */}
       <StyledArrow
         onClick={() => {
           toggleOverlay(false)
@@ -188,22 +193,32 @@ const Overlay = ({ toggleOverlay }) => {
               action={handleButtonClick}
             />
           </ButtonContainer>
+          <TabContainer ref={tabContainer}>
+            {console.log(tabSize)}
+            {tabSize !== 0 ? (
+              <TabContainerInner tab={currentTab} tabSize={tabSize}>
+                <Stats
+                  key="stats"
+                  statsList={pokemonData.stats}
+                  typeColor={typeColor}
+                  tabSize={tabSize}
+                />
 
-          <TabContainer>
-            <TabContainerInner tab={currentTab}>
-              <Stats
-                key="stats"
-                statsList={pokemonData.stats}
-                typeColor={typeColor}
-              />
-
-              <Evolutions
-                key="evos"
-                url={pokemonData.evolution_chain.url}
-                typeColor={typeColor}
-              />
-              <Moves key="moves" moves={pokemonData.moves} />
-            </TabContainerInner>
+                <Evolutions
+                  key="evos"
+                  url={pokemonData.evolution_chain.url}
+                  typeColor={typeColor}
+                  tabSize={tabSize}
+                />
+                <Moves
+                  key="moves"
+                  moves={pokemonData.moves}
+                  tabSize={tabSize}
+                />
+              </TabContainerInner>
+            ) : (
+              ""
+            )}
           </TabContainer>
         </StyledOverlayContainer>
       ) : (

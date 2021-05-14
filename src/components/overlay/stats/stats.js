@@ -9,11 +9,11 @@ import IndividualStat from "./individualStat"
 
 //--styled-components
 const StyledStat = styled.div`
-  width: 100vw;
+  width: 100%;
   max-width: 500px;
 `
 
-const Stats = ({ statsList, typeColor }) => {
+const Stats = ({ statsList, typeColor, tabSize }) => {
   const shortener = word => {
     switch (word) {
       case "hp":
@@ -34,7 +34,7 @@ const Stats = ({ statsList, typeColor }) => {
   }
 
   return (
-    <StyledStat>
+    <StyledStat tabSize={tabSize}>
       {statsList.map(stat => (
         <IndividualStat
           key={stat.stat.name}

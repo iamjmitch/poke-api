@@ -13,6 +13,7 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 50px;
+  justify-content: center;
 `
 const PokemonContainer = styled.div`
   display: flex;
@@ -22,6 +23,7 @@ const PokemonContainer = styled.div`
   text-transform: capitalize;
   text-align: center;
   margin: 0 15px;
+  width: 30%;
   cursor: ${props => (props.hover ? "pointer" : "auto")};
   &.info {
     min-width: 100px;
@@ -31,7 +33,7 @@ const PokemonContainer = styled.div`
     font-size: 0.8em;
   }
   img {
-    height: 120px;
+    height: 100%;
     width: auto;
   }
   svg {
@@ -52,7 +54,6 @@ const SingleEvo = ({ chain, typeColor }) => {
 
   const handleClick = number => {
     setSelectedPokemon(number)
-    console.log(chain.toNum)
   }
 
   return (

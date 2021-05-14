@@ -10,14 +10,14 @@ import SingleEvo from "./singleEvolution"
 
 const StyledContainer = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
   max-width: 500px;
   flex-direction: column;
 `
 
 //--styled-components
 
-const Evolutions = ({ url, typeColor }) => {
+const Evolutions = ({ url, typeColor, tabSize }) => {
   const [evoChain, setEvoChain] = useState("")
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
 
@@ -26,7 +26,6 @@ const Evolutions = ({ url, typeColor }) => {
     try {
       const response = await axios.get(`${url}`)
       generateEvoChain(response.data.chain)
-      console.log(response.data.chain)
     } catch (err) {
       console.log(err)
     }
@@ -39,7 +38,7 @@ const Evolutions = ({ url, typeColor }) => {
     let numOfEvos = evoData.evolves_to.length
     do {
       var evoDetails = evoData["evolution_details"][0]
-      console.log(evoDetails)
+
       if (parseInt(evoData.species.url.split("/")[6]) < 151) {
         evoChain.push({
           species_name: evoData.species.name,
@@ -75,7 +74,6 @@ const Evolutions = ({ url, typeColor }) => {
       evoData = evoData["evolves_to"][0]
     } while (!!evoData && evoData.hasOwnProperty("evolves_to") && numOfEvos < 2)
     createSquence(evoChain)
-    console.log(evoChain)
   }
 
   //convert chain to mapable array
@@ -106,7 +104,7 @@ const Evolutions = ({ url, typeColor }) => {
   }, [selectedPokemon])
 
   return (
-    <StyledContainer>
+    <StyledContainer tabSize={tabSize}>
       {evoChain !== ""
         ? evoChain.map(evo => <SingleEvo chain={evo} typeColor={typeColor} />)
         : "Loading..."}

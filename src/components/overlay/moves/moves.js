@@ -11,7 +11,7 @@ import IndividualMove from "./individualMove"
 const StyledMoveContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  width: 100vw;
+  width: 100%;
   max-width: 500px;
   grid-gap: 15px;
 
@@ -28,7 +28,7 @@ const StyledMoveContainer = styled.div`
   }
 `
 
-const Moves = ({ moves }) => {
+const Moves = ({ moves, tabSize }) => {
   const [movesList, setMovesList] = useState([])
   const [sortedMovesList, setSortedMovesList] = useState([])
 
@@ -52,7 +52,7 @@ const Moves = ({ moves }) => {
   }
 
   return (
-    <StyledMoveContainer>
+    <StyledMoveContainer tabSize={tabSize}>
       {sortedMovesList.map(p => (
         <IndividualMove
           key={p.move.name}
