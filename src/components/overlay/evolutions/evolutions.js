@@ -9,8 +9,7 @@ import SingleEvo from "./singleEvolution"
 //--styles--
 
 const StyledContainer = styled.div`
-  width: 500px;
-  display: flex;
+  4mobile foxesdisplay: flex;
 `
 
 //--styled-components
