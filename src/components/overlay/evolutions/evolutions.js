@@ -50,7 +50,7 @@ const Evolutions = ({ url, typeColor, tabSize }) => {
         })
       }
 
-      if (numOfEvos > 1) {
+      if (numOfEvos > 1 && parseInt(evoData.species.url.split("/")[6]) < 151) {
         for (let i = 0; i < numOfEvos; i++) {
           if (parseInt(evoData.evolves_to[i].species.url.split("/")[6]) < 151) {
             evoChain.push({
