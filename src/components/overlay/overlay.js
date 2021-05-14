@@ -60,6 +60,7 @@ const TabContainer = styled.div`
   width: 100%;
   height: 50vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   justify-content: center;
   align-items: flex-start;
   max-height: 600px;
