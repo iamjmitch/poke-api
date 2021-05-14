@@ -9,7 +9,7 @@ import SingleEvo from "./singleEvolution"
 //--styles--
 
 const StyledContainer = styled.div`
-  4mobile foxesdisplay: flex;
+  display: flex;
 `
 
 //--styled-components
