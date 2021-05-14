@@ -81,6 +81,7 @@ const TabContainerInner = styled.div`
   margin-left: ${props =>
     props.tab == "moves" ? props => "-" + props.tabSize * 2 + "px" : ""};
   transition: margin 0.3s ease-in-out;
+  overflow-x: hidden;
 `
 
 const StyledArrow = styled.div`
@@ -147,6 +148,12 @@ const Overlay = ({ toggleOverlay }) => {
   useEffect(() => {
     getData()
   }, [selectedPokemon])
+
+  useEffect(() => {
+    if (tabContainer.current != undefined) {
+      setTabSize(tabContainer.current.offsetWidth)
+    }
+  }, [tabContainer.current])
 
   const handleButtonClick = tab => {
     setCurrentTab(tab)
