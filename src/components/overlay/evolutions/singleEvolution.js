@@ -5,6 +5,7 @@ import { Link } from "gatsby"
 
 //--components--
 import { arrow } from "../../../../static/images/evoArrow"
+import { arrowSelector } from "./arrowSelector"
 import { PokemonContext } from "../../context/pokemonContext"
 import { getStone } from "./stoneSelector"
 //--styles--
@@ -42,9 +43,8 @@ const PokemonContainer = styled.div`
   }
   svg {
     margin-bottom: 20px;
-    height: 40px;
-    width: auto;
-    transform: rotate(-90deg);
+    max-height: 40px;
+    max-width: 50px;
     path {
       fill: ${props => props.svgColor};
     }
@@ -78,7 +78,7 @@ const SingleEvo = ({ chain, typeColor }) => {
         chain.trigger !== undefined &&
         chain.trigger == "use-item"
           ? getStone(chain.item.name.replace("-", " "))
-          : arrow}
+          : arrowSelector(chain.trigger.replace("-", " "))}
 
         <b>
           <p>
