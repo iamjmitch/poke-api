@@ -21,6 +21,7 @@ const StyledSinglePokemon = styled.div`
   cursor: pointer;
   &:hover {
     background: #00000012;
+    cursor: pointer;
   }
 `
 

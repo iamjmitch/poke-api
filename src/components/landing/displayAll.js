@@ -2,7 +2,7 @@ import axios from "axios"
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import SinglePokemon from "../pokemonCard/desktop/pokemonCard"
-import MobileSinglePokemon from "../pokemonCard/mobile/pokemonSingle"
+
 import Overlay from "../overlay/overlay"
 import { PokemonContext } from "../context/pokemonContext"
 
