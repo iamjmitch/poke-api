@@ -13,6 +13,7 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: 500px;
   flex-direction: column;
+  text-align: center;
 `
 
 //--styled-components

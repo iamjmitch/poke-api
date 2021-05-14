@@ -61,6 +61,10 @@ const TabContainer = styled.div`
   max-width: 500px;
   max-height: 500px;
   overflow-y: scroll;
+  /* mobile */
+  @media (max-width: 480px) {
+    max-height: unset;
+  }
 
   &::-webkit-scrollbar {
     display: none;

@@ -6,6 +6,7 @@ import { Link } from "gatsby"
 //--components--
 import { arrow } from "../../../../static/images/evoArrow"
 import { PokemonContext } from "../../context/pokemonContext"
+import { getStone } from "./stoneSelector"
 //--styles--
 
 //--styled-components
@@ -14,6 +15,7 @@ const StyledContainer = styled.div`
   flex-direction: row;
   margin-bottom: 50px;
   justify-content: center;
+  line-height: 1.2em;
 `
 const PokemonContainer = styled.div`
   display: flex;
@@ -31,22 +33,31 @@ const PokemonContainer = styled.div`
   b {
     font-weight: 500;
     font-size: 0.8em;
+    line-height: 1.2em;
   }
-  img {
-    height: 100%;
+  .stone {
+    height: 40px;
     width: auto;
+    margin-bottom: 20px;
   }
   svg {
     margin-bottom: 20px;
-    height: 50px;
+    height: 40px;
     width: auto;
+    transform: rotate(-90deg);
     path {
       fill: ${props => props.svgColor};
     }
   }
 `
-const ToPokemonImg = styled.img``
-const FromPokemonImg = styled.img``
+const ToPokemonImg = styled.img`
+  height: 100%;
+  width: auto;
+`
+const FromPokemonImg = styled.img`
+  height: 100%;
+  width: auto;
+`
 
 const SingleEvo = ({ chain, typeColor }) => {
   const imgList = JSON.parse(localStorage.getItem("urlList"))
@@ -63,7 +74,12 @@ const SingleEvo = ({ chain, typeColor }) => {
         {chain.from}
       </PokemonContainer>
       <PokemonContainer className="info" svgColor={typeColor}>
-        {arrow}
+        {chain.trigger !== null &&
+        chain.trigger !== undefined &&
+        chain.trigger == "use-item"
+          ? getStone(chain.item.name.replace("-", " "))
+          : arrow}
+
         <b>
           <p>
             {chain.trigger !== null &&
