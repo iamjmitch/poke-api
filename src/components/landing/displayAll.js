@@ -19,11 +19,10 @@ const StyledDisplayAll = styled.div`
   }
 `
 
-const DisplayAll = () => {
+const DisplayAll = ({ showOverlay, toggleOverlay }) => {
   const [pokeList, updatePokeList] = useState([])
   const [windowSize, setWindowSize] = useState(0)
   const [selectedPokemon, setSelectedPokemon] = useState(null)
-  const [showOverlay, toggleOverlay] = useState(false)
 
   const getPokeList = () => {
     axios.get(`https://pokeapi.co/api/v2/pokemon?limit=151`).then(response => {
@@ -52,8 +51,12 @@ const DisplayAll = () => {
         setSelectedPokemon,
       }}
     >
-      <StyledDisplayAll>
-        {showOverlay == true && <Overlay toggleOverlay={toggleOverlay} />}
+      <StyledDisplayAll
+        toggled={showOverlay}
+        showOverlay={showOverlay}
+        toggleOverlay={toggleOverlay}
+      >
+        <Overlay toggleOverlay={toggleOverlay} showOverlay={showOverlay} />
         {pokeList.map((pokemon, index) => (
           <SinglePokemon
             key={pokemon.name}

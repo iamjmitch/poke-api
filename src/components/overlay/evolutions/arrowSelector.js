@@ -10,7 +10,6 @@ import { arrow, trade } from "../../../../static/images/evoArrow"
 //--styled-components
 
 export const arrowSelector = arrowName => {
-  console.log(arrowName)
   switch (arrowName) {
     case "trade":
       return trade

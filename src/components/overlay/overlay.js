@@ -18,17 +18,20 @@ import { arrow } from "../../../static/images/arrow"
 
 const StyledOverlay = styled.div`
   position: relative;
-  opacity: ${props => (props.dataLoaded === true ? 1 : 0)};
+  opacity: ${props => (props.showOverlay === true ? 1 : 0)};
+  pointer-events: ${props => (props.showOverlay === true ? "auto" : "none")};
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  background: ${props => props.BG};
-  transition: opacity 0.3s;
+  justify-content: ${props =>
+    props.dataLoaded === true ? "flex-start" : "center"};
+  align-items: ${props =>
+    props.dataLoaded === true ? "flex-start" : "center"};
+  background: ${props => (props.dataLoaded ? props.BG : "#ffffff")};
+  transition: opacity ${props => (props.showOverlay === true ? "0s" : "1s")};
   overflow-y: scroll;
   overflow-x: hidden;
   &::-webkit-scrollbar {
@@ -116,7 +119,7 @@ const StyledArrow = styled.div`
   }
 `
 
-const Overlay = ({ toggleOverlay }) => {
+const Overlay = ({ toggleOverlay, showOverlay }) => {
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
   const [pokemonData, setPokemonData] = useState([])
   const [currentTab, setCurrentTab] = useState("stats")
@@ -163,15 +166,19 @@ const Overlay = ({ toggleOverlay }) => {
     setCurrentTab(tab)
   }
 
+  const handleArrowClick = () => {
+    toggleOverlay(false)
+    setDataLoaded(false)
+  }
+
   return (
-    <StyledOverlay BG={typeColor} dataLoaded={dataLoaded}>
-      <StyledArrow
-        onClick={() => {
-          toggleOverlay(false)
-        }}
-      >
-        {arrow}
-      </StyledArrow>
+    <StyledOverlay
+      BG={typeColor}
+      dataLoaded={dataLoaded}
+      showOverlay={showOverlay}
+    >
+      {dataLoaded === false && showOverlay === true && <p>Loading....</p>}
+      <StyledArrow onClick={handleArrowClick}>{arrow}</StyledArrow>
       {dataLoaded === true ? (
         <StyledOverlayContainer>
           <Description
@@ -205,7 +212,6 @@ const Overlay = ({ toggleOverlay }) => {
             />
           </ButtonContainer>
           <TabContainer ref={tabContainer}>
-            {console.log(tabSize)}
             {tabSize !== 0 ? (
               <TabContainerInner tab={currentTab} tabSize={tabSize}>
                 <Stats
