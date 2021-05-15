@@ -9,6 +9,7 @@ import { PokemonContext } from "../context/pokemonContext"
 const StyledDisplayAll = styled.div`
   background: white;
   width: 100%;
+  max-width: 1920px;
   justify-content: center;
   align-items: center;
   display: grid;

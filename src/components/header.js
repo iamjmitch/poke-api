@@ -30,7 +30,12 @@ const Header = ({ setSearch }) => {
   return (
     <StyledHeader>
       <img src="./images/pokelogo.svg" />
-      <input type="text" name="search" onChange={e => handleChange(e)} />
+      <input
+        type="text"
+        name="search"
+        onChange={e => handleChange(e)}
+        placeholder="Search By Name Or Pokedex Number"
+      />
     </StyledHeader>
   )
 }
