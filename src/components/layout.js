@@ -8,17 +8,33 @@ import GlobalStyle from "../styles/global"
 const StyledLayout = styled.div`
   background: #f9f0f0;
   height: 100vh;
+  background: white;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: ${props => (props.toggled == true ? "fixed" : "unset")};
   padding-right: ${props => (props.toggled == true ? "17px" : "0px")};
   top: ${props =>
     props.toggled == true ? "-" + props.saveScroll + "px" : "unset"};
+  .footer {
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    font-size: 0.8em;
+    background: white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
 `
 
 const Layout = () => {
   const [showOverlay, toggleOverlay] = useState(false)
   const [windowScroll, setWindowScroll] = useState(0)
   const [saveScroll, setSaveScroll] = useState(0)
+  const [searchQuery, setSearch] = useState("")
 
   useEffect(() => {
     if (typeof window !== `undefined`) {
@@ -50,17 +66,13 @@ const Layout = () => {
   return (
     <StyledLayout toggled={showOverlay} saveScroll={saveScroll}>
       <GlobalStyle />
-      <Header />
-      <DisplayAll showOverlay={showOverlay} toggleOverlay={handleOverlay} />
-      <div
-        style={{
-          width: "100%",
-          textAlign: "center",
-          padding: "25px 0",
-          fontSize: "0.8em",
-          background: "white",
-        }}
-      >
+      <Header setSearch={setSearch} />
+      <DisplayAll
+        showOverlay={showOverlay}
+        toggleOverlay={handleOverlay}
+        searchQuery={searchQuery}
+      />
+      <div className="footer">
         <a href="https://iamjmitch.com" target="_blank">
           <svg
             width="171"

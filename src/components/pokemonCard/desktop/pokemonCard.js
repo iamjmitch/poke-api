@@ -11,7 +11,12 @@ const StyledSinglePokemon = styled.div`
   background: #ece8e826;
   border: 1px solid #00000033;
   border-radius: 10px;
-  display: flex;
+  display: ${props =>
+    props.name.search(props.searchQuery) >= 0 ||
+    String(props.number).search(props.searchQuery) >= 0
+      ? "flex"
+      : "none"};
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -53,10 +58,11 @@ const LoadingImage = styled.img`
   width: 30px;
 `
 
-const SinglePokemon = ({ name, url, number, toggleOverlay }) => {
+const SinglePokemon = ({ searchQuery, name, url, number, toggleOverlay }) => {
   const [pokemon, updatePokemon] = useState([])
   const [isLoading, updateIsLoading] = useState(true)
   const [imageLoaded, updateimageLoaded] = useState(false)
+
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
 
   useEffect(() => {
@@ -94,7 +100,12 @@ const SinglePokemon = ({ name, url, number, toggleOverlay }) => {
   }
 
   return (
-    <StyledSinglePokemon>
+    <StyledSinglePokemon
+      className={`${name} ${number}`}
+      searchQuery={searchQuery}
+      name={name}
+      number={number}
+    >
       {imageLoaded == false && (
         <div style={{ textAlign: "center" }}>
           <LoadingImage src="./images/pokeball.png" />

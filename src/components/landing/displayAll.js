@@ -8,7 +8,9 @@ import { PokemonContext } from "../context/pokemonContext"
 
 const StyledDisplayAll = styled.div`
   background: white;
-  min-height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   grid-gap: 5px;
@@ -19,7 +21,7 @@ const StyledDisplayAll = styled.div`
   }
 `
 
-const DisplayAll = ({ showOverlay, toggleOverlay }) => {
+const DisplayAll = ({ showOverlay, toggleOverlay, searchQuery }) => {
   const [pokeList, updatePokeList] = useState([])
   const [windowSize, setWindowSize] = useState(0)
   const [selectedPokemon, setSelectedPokemon] = useState(null)
@@ -59,6 +61,7 @@ const DisplayAll = ({ showOverlay, toggleOverlay }) => {
         <Overlay toggleOverlay={toggleOverlay} showOverlay={showOverlay} />
         {pokeList.map((pokemon, index) => (
           <SinglePokemon
+            searchQuery={searchQuery}
             key={pokemon.name}
             name={pokemon.name}
             url={pokemon.url}
