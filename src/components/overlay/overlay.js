@@ -31,7 +31,7 @@ const StyledOverlay = styled.div`
   align-items: ${props =>
     props.dataLoaded === true ? "flex-start" : "center"};
   background: ${props => (props.dataLoaded ? props.BG : "#ffffff")};
-  transition: opacity ${props => (props.showOverlay === true ? "0s" : "1s")}
+  transition: opacity ${props => (props.showOverlay === true ? "0s" : "0.4s")}
     ease-in;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -100,7 +100,6 @@ const TabContainerInner = styled.div`
   margin-left: ${props =>
     props.tab == "moves" ? props => "-" + props.tabSize * 2 + "px" : ""};
   transition: margin 0.3s ease-in-out;
-  overflow-x: hidden;
 `
 
 const StyledArrow = styled.div`

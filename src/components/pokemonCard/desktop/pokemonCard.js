@@ -24,6 +24,7 @@ const StyledSinglePokemon = styled.div`
   padding-bottom: 20px;
   min-height: 226px;
   cursor: pointer;
+
   &:hover {
     background: #00000012;
     cursor: pointer;
