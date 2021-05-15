@@ -20,8 +20,10 @@ const StyledHeader = styled.div`
     width: 95%;
     max-width: 500px;
     margin-top: 20px;
-
+    text-align: center;
+    text-transform: capitalize;
     padding: 5px;
+    font-size: 1em;
   }
 `
 
