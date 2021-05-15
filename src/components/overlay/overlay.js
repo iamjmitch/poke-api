@@ -31,11 +31,22 @@ const StyledOverlay = styled.div`
   align-items: ${props =>
     props.dataLoaded === true ? "flex-start" : "center"};
   background: ${props => (props.dataLoaded ? props.BG : "#ffffff")};
-  transition: opacity ${props => (props.showOverlay === true ? "0s" : "1s")};
+  transition: opacity ${props => (props.showOverlay === true ? "0s" : "1s")}
+    ease-in;
   overflow-y: scroll;
   overflow-x: hidden;
   &::-webkit-scrollbar {
     display: none;
+  }
+  .loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 50px;
+      width: 50px;
+    }
   }
 `
 const StyledOverlayContainer = styled.div`
@@ -177,7 +188,12 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
       dataLoaded={dataLoaded}
       showOverlay={showOverlay}
     >
-      {dataLoaded === false && showOverlay === true && <p>Loading....</p>}
+      {dataLoaded === false && showOverlay === true && (
+        <div className="loading">
+          <img src="./images/pokeball.png" alt="loading" />
+          <p>Loading....</p>
+        </div>
+      )}
       <StyledArrow onClick={handleArrowClick}>{arrow}</StyledArrow>
       {dataLoaded === true ? (
         <StyledOverlayContainer>
