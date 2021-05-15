@@ -20,6 +20,12 @@ const StyledImgContainer = styled.div`
   img {
     height: 350px;
   }
+  /* mobile */
+  @media (max-width: 480px) {
+    img {
+      height: 200px;
+    }
+  }
 `
 const StyledName = styled.div`
   text-transform: capitalize;
