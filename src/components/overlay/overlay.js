@@ -75,6 +75,7 @@ const TabContainer = styled.div`
   max-width: 500px;
   max-height: 500px;
   overflow-y: scroll;
+  overflow-x: hidden;
   /* mobile */
   @media (max-width: 480px) {
     max-height: unset;
