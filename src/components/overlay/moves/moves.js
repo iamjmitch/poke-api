@@ -22,11 +22,6 @@ const StyledMoveContainer = styled.div`
     display: none;
   }
   /* mobile */
-  @media (max-width: 550px) {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
 `
 
 const Moves = ({ moves, tabSize }) => {
