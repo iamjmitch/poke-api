@@ -22,6 +22,9 @@ const StyledMoveContainer = styled.div`
     display: none;
   }
   /* mobile */
+  @media (max-width: 5000px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 `
 
 const Moves = ({ moves, tabSize }) => {
