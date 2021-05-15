@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const StyledHeader = styled.div`
   width: 100%;
+  position: fixed;
   text-align: center;
   padding-top: 15px;
   display: flex;
@@ -11,8 +12,9 @@ const StyledHeader = styled.div`
   background: white;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid #0000005e;
   img {
-    height: 100px;
+    height: 50px;
   }
   input {
     width: 95%;

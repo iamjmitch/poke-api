@@ -10,6 +10,7 @@ const StyledDisplayAll = styled.div`
   background: white;
   width: 100%;
   max-width: 1920px;
+  margin-top: 150px;
   justify-content: center;
   align-items: center;
   display: grid;
