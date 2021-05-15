@@ -12,7 +12,7 @@ const StyledSinglePokemon = styled.div`
   border: 1px solid #00000033;
   border-radius: 10px;
   display: ${props =>
-    props.name.search(props.searchQuery) >= 0 ||
+    props.name.search(props.searchQuery.toLowerCase()) >= 0 ||
     String(props.number).search(props.searchQuery) >= 0
       ? "flex"
       : "none"};

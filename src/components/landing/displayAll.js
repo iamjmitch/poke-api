@@ -24,7 +24,6 @@ const StyledDisplayAll = styled.div`
 
 const DisplayAll = ({ showOverlay, toggleOverlay, searchQuery }) => {
   const [pokeList, updatePokeList] = useState([])
-  const [windowSize, setWindowSize] = useState(0)
   const [selectedPokemon, setSelectedPokemon] = useState(null)
 
   const getPokeList = () => {
@@ -41,11 +40,6 @@ const DisplayAll = ({ showOverlay, toggleOverlay, searchQuery }) => {
       getPokeList()
     }
   }, [])
-
-  useEffect(() => {
-    typeof window !== `undefined` ? setWindowSize(window.outerWidth) : ""
-    setWindowSize(window.outerWidth)
-  }, [typeof window])
 
   return (
     <PokemonContext.Provider
