@@ -107,7 +107,9 @@ const Evolutions = ({ url, typeColor, tabSize }) => {
   return (
     <StyledContainer tabSize={tabSize}>
       {evoChain !== ""
-        ? evoChain.map(evo => <SingleEvo chain={evo} typeColor={typeColor} />)
+        ? evoChain.map(evo => (
+            <SingleEvo key={evo.toNum} chain={evo} typeColor={typeColor} />
+          ))
         : "Loading..."}
       {evoChain !== "" &&
         evoChain.length === 0 &&

@@ -180,6 +180,7 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
   const handleArrowClick = () => {
     toggleOverlay(false)
     setDataLoaded(false)
+    setCurrentTab("stats")
   }
 
   return (
@@ -194,7 +195,9 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
           <p>Loading....</p>
         </div>
       )}
-      <StyledArrow onClick={handleArrowClick}>{arrow}</StyledArrow>
+      {showOverlay === true && (
+        <StyledArrow onClick={handleArrowClick}>{arrow}</StyledArrow>
+      )}
       {dataLoaded === true ? (
         <StyledOverlayContainer>
           <Description

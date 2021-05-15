@@ -56,10 +56,16 @@ const Description = ({
   const [desc, setDesc] = useState(null)
 
   useEffect(() => {
-    let descNumber = Math.floor(Math.random() * 3)
-    setDesc(
-      descList[descNumber]["flavor_text"].replace(/\f/g, " ").toProperCase()
-    )
+    //make sure only pokemon descriptions written in english are returned
+    do {
+      let descNumber = Math.floor(Math.random() * descList.length)
+      if (descList[descNumber]["language"].name == "en") {
+        setDesc(
+          descList[descNumber]["flavor_text"].replace(/\f/g, " ").toProperCase()
+        )
+        break
+      }
+    } while (desc == null)
   }, [descList])
 
   return (
