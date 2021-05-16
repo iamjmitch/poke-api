@@ -22,7 +22,8 @@ const StyledImgContainer = styled.div`
   }
   /* mobile */
   @media (max-width: 480px) {
-    margin-top:-150px img {
+    margin-top: -150px;
+    img {
       height: 200px;
     }
   }
