@@ -24,7 +24,7 @@ const StyledMoveContainer = styled.div`
   }
   /* mobile */
   @media (max-width: 5000px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 `
 
