@@ -15,19 +15,7 @@ const StyledDescContainer = styled.div`
   align-items: center;
   border-top-left-radius: 20px;
 `
-const StyledImgContainer = styled.div`
-  margin-top: -275px;
-  img {
-    height: 350px;
-  }
-  /* mobile */
-  @media (max-width: 480px) {
-    margin-top: -150px;
-    img {
-      height: 200px;
-    }
-  }
-`
+
 const StyledName = styled.div`
   text-transform: capitalize;
   font-size: 3em;
@@ -77,9 +65,6 @@ const Description = ({
 
   return (
     <StyledDescContainer>
-      <StyledImgContainer>
-        <img src={pokemonImage} />
-      </StyledImgContainer>
       <StyledName>{name}</StyledName>
       <StyledTypeContainer>
         {typeof pokemonType !== []

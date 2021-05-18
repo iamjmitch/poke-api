@@ -60,12 +60,13 @@ const StyledOverlayContainer = styled.div`
   background: white;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
-  padding: 0 15px 50px 15px;
+  padding: 0 15px 0 15px;
 `
 
 const ButtonContainer = styled.div`
   display: flex;
   padding-bottom: 30px;
+  justify-content: center;
 `
 
 const TabContainer = styled.div`
@@ -74,7 +75,8 @@ const TabContainer = styled.div`
   width: 100%;
   max-width: 500px;
   max-height: 500px;
-  overflow-y: scroll;
+  overflow-y: ${props => (props.tab == "moves" ? "scroll" : "hidden")};
+
   overflow-x: hidden;
   /* mobile */
   @media (max-width: 480px) {
@@ -129,6 +131,32 @@ const StyledArrow = styled.div`
     top: 15px;
   }
 `
+const StyledImgContainer = styled.div`
+  margin-top: -275px;
+  img {
+    height: 350px;
+  }
+  /* mobile */
+  @media (max-width: 480px) {
+    margin-top: -150px;
+    img {
+      height: 200px;
+    }
+  }
+`
+
+const StyledInfoContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 100vh;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`
 
 const Overlay = ({ toggleOverlay, showOverlay }) => {
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext)
@@ -175,6 +203,9 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
 
   const handleButtonClick = tab => {
     setCurrentTab(tab)
+    if (tabContainer.current != undefined && dataLoaded == true) {
+      tabContainer.current.scrollTop = 0
+    }
   }
 
   const handleArrowClick = () => {
@@ -200,62 +231,71 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
       )}
       {dataLoaded === true ? (
         <StyledOverlayContainer>
-          <Description
-            key={pokemonData.name}
-            name={pokemonData.name}
-            descList={pokemonData.flavor_text_entries}
-            pokemonImage={
-              pokemonData.sprites.other["official-artwork"]["front_default"]
-            }
-            pokemonType={pokemonData.types}
-            typeColor={typeColor}
-          />
-          <ButtonContainer>
-            <Button
-              color={typeColor}
-              active={currentTab}
-              text="stats"
-              action={handleButtonClick}
+          <StyledImgContainer>
+            <img
+              src={
+                pokemonData.sprites.other["official-artwork"]["front_default"]
+              }
             />
-            <Button
-              color={typeColor}
-              text="evolutions"
-              action={handleButtonClick}
-              active={currentTab}
+          </StyledImgContainer>
+          <StyledInfoContainer>
+            <Description
+              key={pokemonData.name}
+              name={pokemonData.name}
+              descList={pokemonData.flavor_text_entries}
+              pokemonImage={
+                pokemonData.sprites.other["official-artwork"]["front_default"]
+              }
+              pokemonType={pokemonData.types}
+              typeColor={typeColor}
             />
-            <Button
-              color={typeColor}
-              active={currentTab}
-              text="moves"
-              action={handleButtonClick}
-            />
-          </ButtonContainer>
-          <TabContainer ref={tabContainer}>
-            {tabSize !== 0 ? (
-              <TabContainerInner tab={currentTab} tabSize={tabSize}>
-                <Stats
-                  key="stats"
-                  statsList={pokemonData.stats}
-                  typeColor={typeColor}
-                  tabSize={tabSize}
-                />
+            <ButtonContainer>
+              <Button
+                color={typeColor}
+                active={currentTab}
+                text="stats"
+                action={handleButtonClick}
+              />
+              <Button
+                color={typeColor}
+                text="evolutions"
+                action={handleButtonClick}
+                active={currentTab}
+              />
+              <Button
+                color={typeColor}
+                active={currentTab}
+                text="moves"
+                action={handleButtonClick}
+              />
+            </ButtonContainer>
+            <TabContainer ref={tabContainer} tab={currentTab}>
+              {tabSize !== 0 ? (
+                <TabContainerInner tab={currentTab} tabSize={tabSize}>
+                  <Stats
+                    key="stats"
+                    statsList={pokemonData.stats}
+                    typeColor={typeColor}
+                    tabSize={tabSize}
+                  />
 
-                <Evolutions
-                  key="evos"
-                  url={pokemonData.evolution_chain.url}
-                  typeColor={typeColor}
-                  tabSize={tabSize}
-                />
-                <Moves
-                  key="moves"
-                  moves={pokemonData.moves}
-                  tabSize={tabSize}
-                />
-              </TabContainerInner>
-            ) : (
-              ""
-            )}
-          </TabContainer>
+                  <Evolutions
+                    key="evos"
+                    url={pokemonData.evolution_chain.url}
+                    typeColor={typeColor}
+                    tabSize={tabSize}
+                  />
+                  <Moves
+                    key="moves"
+                    moves={pokemonData.moves}
+                    tabSize={tabSize}
+                  />
+                </TabContainerInner>
+              ) : (
+                ""
+              )}
+            </TabContainer>
+          </StyledInfoContainer>
         </StyledOverlayContainer>
       ) : (
         ""

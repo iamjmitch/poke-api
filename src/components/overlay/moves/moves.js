@@ -15,6 +15,7 @@ const StyledMoveContainer = styled.div`
   max-width: 500px;
   grid-gap: 15px;
   grid-auto-rows: min-content;
+  height: 100%;
 
   align-items: center;
   overflow-y: scroll;

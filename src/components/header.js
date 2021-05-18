@@ -17,7 +17,7 @@ const StyledHeader = styled.div`
     height: 50px;
   }
   input {
-    width: 95%;
+    width: 94%;
     max-width: 500px;
     margin-top: 20px;
     text-align: center;
