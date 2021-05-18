@@ -61,6 +61,9 @@ const StyledOverlayContainer = styled.div`
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   padding: 0 15px 0 15px;
+  @media (max-width: 500px) {
+    margin-top: 180px;
+  }
 `
 
 const ButtonContainer = styled.div`

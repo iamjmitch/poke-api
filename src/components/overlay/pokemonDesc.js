@@ -22,6 +22,7 @@ const StyledName = styled.div`
   font-weight: normal;
   padding-bottom: 20px;
   line-height: 1em;
+  padding-top: 10px;
 `
 const StyledTypeContainer = styled.div`
   padding-bottom: 20px;
