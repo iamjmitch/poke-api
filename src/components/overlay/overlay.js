@@ -62,7 +62,7 @@ const StyledOverlayContainer = styled.div`
   border-top-right-radius: 40px;
   padding: 0 15px 0 15px;
   @media (max-width: 500px) {
-    margin-top: 180px;
+    margin-top: 220px;
   }
 `
 
@@ -141,9 +141,9 @@ const StyledImgContainer = styled.div`
   }
   /* mobile */
   @media (max-width: 480px) {
-    margin-top: -150px;
+    margin-top: -200px;
     img {
-      height: 200px;
+      height: 275px;
     }
   }
 `

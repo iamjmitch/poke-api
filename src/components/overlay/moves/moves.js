@@ -23,7 +23,7 @@ const StyledMoveContainer = styled.div`
     display: none;
   }
   /* mobile */
-  @media (max-width: 5000px) {
+  @media (max-width: 500px) {
     grid-template-columns: 1fr;
   }
 `
