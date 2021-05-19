@@ -115,7 +115,7 @@ const SinglePokemon = ({ searchQuery, name, url, number, toggleOverlay }) => {
       {imageLoaded == false && (
         <div style={{ textAlign: "center" }}>
           <LoadingImage src="./images/pokeball.png" />
-          <p>Releasing...</p>
+          <p>Loading...</p>
         </div>
       )}
       {isLoading === false ? (

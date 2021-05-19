@@ -9,12 +9,11 @@ import { PokemonContext } from "../context/pokemonContext"
 const StyledDisplayAll = styled.div`
   background: white;
   width: 100%;
-  max-width: 1920px;
-  margin-top: 150px;
+  margin-top: 101px;
   justify-content: center;
   align-items: center;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 5px;
   padding: 10px;
   /* mobile */

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-
+import { Helmet } from "react-helmet"
 import Header from "./header"
 import DisplayAll from "./landing/displayAll"
 import GlobalStyle from "../styles/global"
@@ -65,6 +65,7 @@ const Layout = () => {
 
   return (
     <StyledLayout toggled={showOverlay} saveScroll={saveScroll}>
+      <Helmet title="Pokedex" defer={false} />
       <GlobalStyle />
       <Header setSearch={setSearch} />
       <DisplayAll
@@ -91,7 +92,7 @@ const Layout = () => {
             />
           </svg>
         </a>
-        <br></br>
+
         <br></br>
         <a
           style={{
@@ -104,7 +105,7 @@ const Layout = () => {
           rel="noreferrer"
           target="_blank"
         >
-          Design Inspired By Daniel Motta's Mockup
+          UI Designed Inspired From Daniel Motta
         </a>
       </div>
     </StyledLayout>

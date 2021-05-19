@@ -7,14 +7,15 @@ const StyledHeader = styled.div`
   text-align: center;
   padding-top: 15px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding-bottom: 20px;
-  background: white;
+  background: rgb(173, 53, 41);
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #0000005e;
   img {
     height: 50px;
+    margin-right: 50px;
   }
   /* mobile */
   @media (max-width: 500px) {
@@ -31,20 +32,19 @@ const StyledHeader = styled.div`
   input {
     width: 94%;
     max-width: 500px;
-    margin-top: 20px;
+
     text-align: center;
     text-transform: capitalize;
     padding: 5px;
     font-size: 1em;
-    @media (max-width: 500px) {
-      width: 50%;
-      margin-top: 0;
-      background: #ffffff6e;
-      border: none;
-      border-radius: 23px;
+    border: none;
+    border-radius: 23px;
+    color: white;
+    background: #ffffff6e;
+    ::placeholder {
       color: white;
-      ::placeholder {
-        color: white;
+      @media (max-width: 500px) {
+        width: 50%;
       }
     }
   }
