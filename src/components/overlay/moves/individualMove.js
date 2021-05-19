@@ -24,7 +24,7 @@ const StyledMove = styled.div`
   }
 `
 const StyledTextContainer = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   .smaller {
