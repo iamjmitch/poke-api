@@ -15,7 +15,7 @@ Design inspired by the mockup created by [Daniel Motta](https://dribbble.com/Dan
 
 ## API Used
 
--[PokeAPI](https://pokeapi.co/)
+- [PokeAPI](https://pokeapi.co/)
 
 ## Plugins Used
 
