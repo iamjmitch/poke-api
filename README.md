@@ -13,6 +13,10 @@ Design inspired by the mockup created by [Daniel Motta](https://dribbble.com/Dan
 
 - React & Gatsby
 
+## API Used
+
+-[PokeAPI](https://pokeapi.co/)
+
 ## Plugins Used
 
 - gatsby-plugin-styled-components
