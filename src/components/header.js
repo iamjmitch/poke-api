@@ -21,7 +21,8 @@ const StyledHeader = styled.div`
   @media (max-width: 500px) {
     flex-direction: row;
     background: #ad3529;
-    padding-bottom: 15px;
+    padding: 0 10px 15px 10px;
+
     img {
       height: unset;
       width: 30%;
