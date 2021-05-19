@@ -16,6 +16,18 @@ const StyledHeader = styled.div`
   img {
     height: 50px;
   }
+  /* mobile */
+  @media (max-width: 500px) {
+    flex-direction: row;
+    background: #ad3529;
+    padding-bottom: 15px;
+    img {
+      height: unset;
+      width: 30%;
+      margin-right: 10%;
+    }
+  }
+
   input {
     width: 94%;
     max-width: 500px;
@@ -24,6 +36,17 @@ const StyledHeader = styled.div`
     text-transform: capitalize;
     padding: 5px;
     font-size: 1em;
+    @media (max-width: 500px) {
+      width: 50%;
+      margin-top: 0;
+      background: #ffffff6e;
+      border: none;
+      border-radius: 23px;
+      color: white;
+      ::placeholder {
+        color: white;
+      }
+    }
   }
 `
 
@@ -38,7 +61,7 @@ const Header = ({ setSearch }) => {
         type="text"
         name="search"
         onChange={e => handleChange(e)}
-        placeholder="Search By Name Or Pokedex Number"
+        placeholder="Search Pokedex"
       />
     </StyledHeader>
   )

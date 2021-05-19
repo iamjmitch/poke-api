@@ -29,6 +29,11 @@ const StyledSinglePokemon = styled.div`
     background: #00000012;
     cursor: pointer;
   }
+  /* mobile */
+  @media (max-width: 500px) {
+    margin: 2px;
+    border-radius: 5px;
+  }
 `
 
 const StyledInnerDiv = styled.div`

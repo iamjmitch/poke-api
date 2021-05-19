@@ -20,6 +20,8 @@ const StyledDisplayAll = styled.div`
   /* mobile */
   @media (max-width: 480px) {
     grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+    margin-top: 85px;
+    padding: 5px 5px 0 5px;
   }
 `
 
