@@ -44,9 +44,6 @@ const StyledHeader = styled.div`
     background: #ffffff6e;
     ::placeholder {
       color: white;
-      @media (max-width: 500px) {
-        width: 50%;
-      }
     }
   }
 `
