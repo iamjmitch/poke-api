@@ -1,6 +1,6 @@
 # Pokedex - PokeAPI
 
-![Screenshot](https://pokemon.iamjmitch.com/screenshot2.jpg)
+![Screenshot](https://pokemon.iamjmitch.com/screenshot3.jpg)
 
 [Demo](https://pokemon.iamjmitch.com)
 
