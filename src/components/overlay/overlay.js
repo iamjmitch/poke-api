@@ -60,7 +60,7 @@ const StyledOverlayContainer = styled.div`
   background: white;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
-  padding: 0 15px 0 15px;
+  padding: 0 15px 30px 15px;
   @media (max-width: 500px) {
     margin-top: 220px;
   }
@@ -74,26 +74,17 @@ const ButtonContainer = styled.div`
 
 const TabContainer = styled.div`
   display: inline-block;
-  padding-bottom: 30px;
+
   width: 100%;
   max-width: 500px;
   max-height: 500px;
-  overflow-y: ${props => (props.tab == "moves" ? "scroll" : "hidden")};
-
+  height: 100%;
   overflow-x: hidden;
-  /* mobile */
-  @media (max-width: 480px) {
-    max-height: unset;
-  }
 
   &::-webkit-scrollbar {
     display: none;
   }
   /* mobile */
-  @media (min-width: 500px) {
-    max-height: unset;
-    height: unset;
-  }
 `
 const TabContainerInner = styled.div`
   display: grid;
@@ -105,6 +96,8 @@ const TabContainerInner = styled.div`
   margin-left: ${props =>
     props.tab == "moves" ? props => "-" + props.tabSize * 2 + "px" : ""};
   transition: margin 0.3s ease-in-out;
+  height: ${props => props.tabHeight}px;
+  overflow: hidden;
 `
 
 const StyledArrow = styled.div`
@@ -152,10 +145,11 @@ const StyledInfoContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  max-height: 100vh;
+
   overflow-y: scroll;
+  height: calc(100vh - 30px);
   &::-webkit-scrollbar {
     display: none;
   }
@@ -168,6 +162,7 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
   const [typeColor, setTypeColor] = useState(null)
   const [dataLoaded, setDataLoaded] = useState(false)
   const [tabSize, setTabSize] = useState(0)
+  const [tabHeight, setTabHeight] = useState(0)
   const tabContainer = useRef()
 
   const getData = async () => {
@@ -187,6 +182,7 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
             setTypeColor(color)
             setDataLoaded(true)
             setTabSize(tabContainer.current.offsetWidth)
+            setTabHeight(tabContainer.current.offsetHeight)
           })
         )
     } catch (err) {
@@ -201,14 +197,12 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
   useEffect(() => {
     if (tabContainer.current != undefined) {
       setTabSize(tabContainer.current.offsetWidth)
+      setTabHeight(tabContainer.current.offsetHeight)
     }
   }, [tabContainer.current])
 
   const handleButtonClick = tab => {
     setCurrentTab(tab)
-    if (tabContainer.current != undefined && dataLoaded == true) {
-      tabContainer.current.scrollTop = 0
-    }
   }
 
   const handleArrowClick = () => {
@@ -217,6 +211,7 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
     setCurrentTab("stats")
   }
 
+  console.log(tabHeight)
   return (
     <StyledOverlay
       BG={typeColor}
@@ -274,7 +269,11 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
             </ButtonContainer>
             <TabContainer ref={tabContainer} tab={currentTab}>
               {tabSize !== 0 ? (
-                <TabContainerInner tab={currentTab} tabSize={tabSize}>
+                <TabContainerInner
+                  tab={currentTab}
+                  tabSize={tabSize}
+                  tabHeight={tabHeight}
+                >
                   <Stats
                     key="stats"
                     statsList={pokemonData.stats}

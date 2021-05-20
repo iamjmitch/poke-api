@@ -14,6 +14,10 @@ const StyledContainer = styled.div`
   max-width: 500px;
   flex-direction: column;
   text-align: center;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 //--styled-components

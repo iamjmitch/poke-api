@@ -14,9 +14,12 @@ import { getStone } from "./stoneSelector"
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   justify-content: center;
   line-height: 1.2em;
+  :last-of-type {
+    margin-bottom: 0px;
+  }
 `
 const PokemonContainer = styled.div`
   display: flex;
@@ -28,6 +31,7 @@ const PokemonContainer = styled.div`
   margin: 0 15px;
   width: 30%;
   cursor: ${props => (props.hover ? "pointer" : "auto")};
+
   &.info {
     min-width: 100px;
   }

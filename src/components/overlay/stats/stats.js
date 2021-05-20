@@ -11,6 +11,10 @@ import IndividualStat from "./individualStat"
 const StyledStat = styled.div`
   width: 100%;
   max-width: 500px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 const Stats = ({ statsList, typeColor, tabSize }) => {

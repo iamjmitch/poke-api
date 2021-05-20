@@ -15,7 +15,6 @@ const StyledMove = styled.div`
   border: 1px solid #8080804d;
   width: 100%;
 
-  margin-bottom: 10px;
   padding: 10px;
   font-weight: 500;
   text-transform: capitalize;
