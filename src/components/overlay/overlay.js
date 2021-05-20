@@ -79,9 +79,9 @@ const TabContainer = styled.div`
 
   width: 100%;
   max-width: 500px;
-  max-height: 500px;
-  height: 100%;
-  overflow-x: hidden;
+
+  height: ${props => (props.tabHeight > 0 ? props.tabHeight + "px" : "100%")};
+  overflow: hidden;
 
   &::-webkit-scrollbar {
     display: none;
@@ -201,7 +201,7 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
       setTabSize(tabContainer.current.offsetWidth)
       setTabHeight(tabContainer.current.offsetHeight)
     }
-  }, [tabContainer.current])
+  }, [tabContainer.current?.offsetWidth, tabContainer.current?.offsetHeight])
 
   const handleButtonClick = tab => {
     setCurrentTab(tab)
@@ -213,7 +213,6 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
     setCurrentTab("stats")
   }
 
-  console.log(tabHeight)
   return (
     <StyledOverlay
       BG={typeColor}
@@ -269,7 +268,11 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
                 action={handleButtonClick}
               />
             </ButtonContainer>
-            <TabContainer ref={tabContainer} tab={currentTab}>
+            <TabContainer
+              ref={tabContainer}
+              tab={currentTab}
+              tabHeight={tabHeight}
+            >
               {tabSize !== 0 ? (
                 <TabContainerInner
                   tab={currentTab}
