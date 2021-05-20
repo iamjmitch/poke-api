@@ -53,6 +53,12 @@ const PokemonContainer = styled.div`
       fill: ${props => props.svgColor};
     }
   }
+  /* mobile */
+  @media (max-width: 400px) {
+    :nth-of-type(2) {
+      margin: 0;
+    }
+  }
 `
 const ToPokemonImg = styled.img`
   height: 100%;

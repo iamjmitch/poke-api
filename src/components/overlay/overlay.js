@@ -63,6 +63,8 @@ const StyledOverlayContainer = styled.div`
   padding: 0 15px 30px 15px;
   @media (max-width: 500px) {
     margin-top: 220px;
+    padding-bottom: 15px;
+    min-height: 100vh;
   }
 `
 
