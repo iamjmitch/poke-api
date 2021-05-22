@@ -199,7 +199,9 @@ const Overlay = ({ toggleOverlay, showOverlay }) => {
   useEffect(() => {
     if (tabContainer.current != undefined) {
       setTabSize(tabContainer.current.offsetWidth)
-      setTabHeight(tabContainer.current.offsetHeight)
+      if (tabHeight == 0) {
+        setTabHeight(tabContainer.current.offsetHeight)
+      }
     }
   }, [tabContainer.current?.offsetWidth, tabContainer.current?.offsetHeight])
 
